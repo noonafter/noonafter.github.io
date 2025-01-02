@@ -1,6 +1,6 @@
 ---
-title: 使用Github pages和Jekyll搭建个人blog之一：快速开始
-tags: jekyll
+title: BLOG折腾笔记之一：快速开始
+tags: blog
 ---
 
 
@@ -13,7 +13,7 @@ tags: jekyll
 
 ## 快速开始
 
-**Step1**：为了快速搭建器自己的blog，我选择了直接fork现有的GitHub Pages模版仓库，这条路径适合与我一样对HTML，CSS，Javascript，Liquid等了解较少的前端小白，先快速上手获得正反馈，再慢慢研究。这里推荐几个自己喜欢的模版，比如[TeXt Theme](https://github.com/kitian616/jekyll-TeXt-theme)，[Lanyon Jekyll theme](https://jekyllthemes.io/theme/lanyon)，当然还有很多主题可供选择，可以到以下jekyll主题网站自行挑选：
+**Step1**：为了快速上手，我选择了直接fork现有的GitHub Pages模版仓库，这条路径适合与我一样对HTML，CSS，Javascript，Liquid等了解较少的前端小白，先快速上手获得正反馈，再慢慢研究。这里推荐几个自己喜欢的模版，比如[TeXt Theme](https://github.com/kitian616/jekyll-TeXt-theme)，[Lanyon Jekyll theme](https://jekyllthemes.io/theme/lanyon)，当然还有很多主题可供选择，可以到以下jekyll主题网站自行挑选：
 
 [jekyllthemes.org](http://jekyllthemes.org/)
 
