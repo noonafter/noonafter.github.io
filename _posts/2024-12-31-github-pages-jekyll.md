@@ -9,7 +9,7 @@ tags: blog
 
 [Jekyll](https://docs.github.com/zh/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll)是使用ruby语言写的一个静态网站生成器，可以用ruby语言下的gem包管理器进行安装，还提供本地实时服务器进行随时查看。
 
-借助以上两个工具，可以快速搭建个人blog或者是为项目搭建介绍网站。[点击这里](noonafter.cn)可以预览使用GitHub Pages和Jekyll搭建个人网站的效果。
+借助以上两个工具，可以快速搭建个人blog或者是为项目搭建介绍网站。[点击这里](https://noonafter.cn/archive.html)可以预览使用GitHub Pages和Jekyll搭建个人网站的效果。
 
 ## 快速开始
 
