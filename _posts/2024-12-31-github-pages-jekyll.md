@@ -11,8 +11,9 @@ tags: blog
 
 借助以上两个工具，可以快速搭建个人blog或者是为项目搭建介绍网站。[点击这里](https://noonafter.cn/archive.html)可以预览使用GitHub Pages和Jekyll搭建个人网站的效果。
 
-## 快速开始
+<!--more-->
 
+## 快速开始
 **Step1**：为了快速上手，可以直接fork现有的Jekyll主题仓库作为模版，这条路径适合与我一样对HTML，CSS，Javascript，Liquid等了解较少的前端小白，先快速上手获得正反馈，再慢慢研究。这里推荐几个star比较多的主题，比如[TeXt Theme](https://github.com/kitian616/jekyll-TeXt-theme)，[Lanyon Jekyll theme](https://jekyllthemes.io/theme/lanyon)，当然还有很多主题可供选择，可以到以下jekyll主题网站自行挑选：
 
 [jekyllthemes.org](http://jekyllthemes.org/)
