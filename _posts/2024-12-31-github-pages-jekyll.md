@@ -33,5 +33,87 @@ tags: jekyll
 ## 搭建本地开发环境（可选）
 虽然GitHub对Jekyll项目提供了从构建到部署的完整支持，但是为了更方便地对网站的改动进行预览和测试，依然有必要在本地搭建完整的开发环境。毕竟在改动push到GitHub之后，GitHub依然需要几分钟的时间完成构建和部署，并且有一些改动只是为了查看效果并不需要commit到仓库。
 
-### linux环境
+以下步骤从头开始，在本地搭建jekyll服务器，进行实时构建+部署，并查看效果
+
+### 搭建linux环境
 Jekyll官方不推荐在Windows下使用Jekyll，因此，第一步是搭建一个类linux的环境，对linux环境很熟的小伙伴可以跳过。具体方法可以参考[Windows平台下类linux环境搭建](https://noonafter.cn/2024/12/31/linux-environment.html)
+
+### 安装Ryby和Bundle
+**Step1**：安装Ruby。在bash中运行：
+```bash
+sudo apt install ruby-full
+```
+ruby-full会同时安装gem。gem是ruby的包管理器，类似于python的pip。
+
+
+**Step2**：安装bundler。运行：
+```bash
+gem install bundler
+```
+建议使用 Bundler 安装和运行 Jekyll。 Bundler 可管理 Ruby gem 依赖项，减少 Jekyll 构建错误和阻止环境相关的漏洞。这里注意安装的是**bundler**，而不是bundle（后续使用bundler，执行的是bundle命令）
+
+**Step3**：进入本地仓库文件夹中（需要先clone仓库到本地），运行：
+```bash
+sudo bundle install
+```
+注意step2中已经安装过bundler了，这里的install并不是安装bundle。而是根据项目中的 Gemfile 文件来安装所有依赖的 Ruby gem 包，生成Gemfile.lock。
+
+当然可能会报错，没有报错的直接跳到step4。报错信息如下：
+```
+Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+An error occurred while installing bigdecimal (3.1.9), and Bundler cannot continue.
+
+In Gemfile:
+  jekyll-text-theme was resolved to 2.2.6, which depends on
+    jemoji was resolved to 0.13.0, which depends on
+      html-pipeline was resolved to 2.14.3, which depends on
+        activesupport was resolved to 8.0.1, which depends on
+          bigdecimal
+
+make failedNo such file or directory - make
+
+checking for -lcrypto... no checking for openssl/ssl.h... no
+ ```
+
+报错显示 make failedNo such file or directory - make，表示缺少构建工具，并且OpenSSL 相关依赖未找到。则需要安装对应依赖项：
+```bash
+sudo apt install build-essential libssl-dev zlib1g-dev ruby-dev make
+```
+
+依赖的包如下：
+- build-essential：包含 make、gcc 等工具。
+- libssl-dev：提供 OpenSSL 开发库。
+- zlib1g-dev：处理压缩相关的库。
+- ruby-dev：Ruby 的开发头文件。
+
+这样所有依赖包都装好了，重新执行命令
+```bash
+sudo bundle install
+```
+值得注意的是：gem会弹出警告：不要以root权限运行bundler。这里直接忽略，因为如果直接bundle install会提示权限不够，不能删除或者创建。
+
+**Step4**：创建本地jekyll服务器，以便实时预览
+```bash
+bundle exec jekyll serve
+```
+这里便已经搭好本地jekyll服务器了，浏览器输入 127.0.0.1:4000 可以查看当前构建好的网页。
+
+值得注意的是，如果修改了_config.yml文件中的配置项，需要重启jekyll服务器才能生效。而如果仅是修改了其他文件，可以重新打开一个bash运行：
+```bash
+bundle exec jekyll build
+```
+对项目进行重新构建，当然也可以加上--watch来自动监视改动进行构建。
+
+后续文章介绍如何自定义域名、_config.yml文件的用途及修改、如何添加专栏/文章、如何修改logo、添加评论系统、页面访问统计、用户行为分析等功能。
+
+
+## 参考文章
+搭建教程：
+https://docs.github.com/zh/pages/quickstart
+
+主题自定义教程：
+https://kitian616.github.io/jekyll-TeXt-theme/docs/en/quick-start
+
+从头开始搭建教程：
+https://blog.csdn.net/qq_33919450/article/details/127859193
