@@ -13,7 +13,7 @@ tags: blog
 
 ## 快速开始
 
-**Step1**：为了快速上手，我选择了直接fork现有的GitHub Pages模版仓库，这条路径适合与我一样对HTML，CSS，Javascript，Liquid等了解较少的前端小白，先快速上手获得正反馈，再慢慢研究。这里推荐几个自己喜欢的模版，比如[TeXt Theme](https://github.com/kitian616/jekyll-TeXt-theme)，[Lanyon Jekyll theme](https://jekyllthemes.io/theme/lanyon)，当然还有很多主题可供选择，可以到以下jekyll主题网站自行挑选：
+**Step1**：为了快速上手，可以直接fork现有的Jekyll主题仓库作为模版，这条路径适合与我一样对HTML，CSS，Javascript，Liquid等了解较少的前端小白，先快速上手获得正反馈，再慢慢研究。这里推荐几个star比较多的主题，比如[TeXt Theme](https://github.com/kitian616/jekyll-TeXt-theme)，[Lanyon Jekyll theme](https://jekyllthemes.io/theme/lanyon)，当然还有很多主题可供选择，可以到以下jekyll主题网站自行挑选：
 
 [jekyllthemes.org](http://jekyllthemes.org/)
 
