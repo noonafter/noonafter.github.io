@@ -31,12 +31,9 @@ tags: blog
 
 
 ## 搭建本地开发环境（可选）
-虽然GitHub对Jekyll项目提供了从构建到部署的完整支持，但是为了更方便地对网站的改动进行预览和测试，依然有必要在本地搭建完整的开发环境。毕竟在改动push到GitHub之后，GitHub依然需要几分钟的时间完成构建和部署，并且有一些改动只是为了查看效果并不需要commit到仓库。
+GitHub对Jekyll项目提供了从构建到部署的完整支持，在改动push到远端服务器之后，GitHub Actions会自动完成build and deployment。但是为了**更方便地对网站进行预览和测试**，依然有必要在本地搭建完整的开发环境。
 
-以下步骤从头开始，在本地搭建jekyll服务器，进行实时构建+部署，并查看效果
-
-### 搭建linux环境
-Jekyll官方不推荐在Windows下使用Jekyll，因此，第一步是搭建一个类linux的环境，对linux环境很熟的小伙伴可以跳过。具体方法可以参考[Windows平台下类linux环境搭建](https://noonafter.cn/2024/12/31/linux-environment.html)
+Jekyll官方不推荐在Windows下使用Jekyll，因此，需要在linux下进行开发环境的搭建。如果对linux不熟悉，可以参考[Windows平台下类linux环境搭建](https://noonafter.cn/2024/12/31/linux-environment.html)进行操作。以下操作步骤均在linux环境下进行。
 
 ### 安装Ryby和Bundle
 **Step1**：安装Ruby。在bash中运行：
@@ -110,11 +107,10 @@ bundle exec jekyll build
 
 
 ## 参考文章
-搭建教程：
-https://docs.github.com/zh/pages/quickstart
+官方搭建教程：
+<https://docs.github.com/zh/pages/quickstart>
 
-主题自定义教程：
-https://kitian616.github.io/jekyll-TeXt-theme/docs/en/quick-start
+TeXt主题教程：
+<https://kitian616.github.io/jekyll-TeXt-theme/docs/en/quick-start>
 
-从头开始搭建教程：
-https://blog.csdn.net/qq_33919450/article/details/127859193
+
