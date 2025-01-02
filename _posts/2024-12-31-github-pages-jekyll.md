@@ -52,6 +52,7 @@ gem install bundler
 ```
 建议使用 Bundler 安装和运行 Jekyll。 Bundler 可管理 Ruby gem 依赖项，减少 Jekyll 构建错误和阻止环境相关的漏洞。这里注意安装的是**bundler**，而不是bundle（后续使用bundler，执行的是bundle命令）
 
+### 搭建本地Jekyll服务器
 **Step3**：进入本地仓库文件夹中（需要先clone仓库到本地），运行：
 ```bash
 sudo bundle install
