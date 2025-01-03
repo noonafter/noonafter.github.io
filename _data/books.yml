@@ -8,13 +8,16 @@
   note: 配合strang老爷子的线性代数课程，学完才发现线性代数的世界如此优雅而美妙。深刻体会到，数学是自然世界的语言，如果存在一个造物主，那么学习数学便能窥探到他的神迹。
 
 
-
-
 - name: 毛泽东传
   cover: https://noonafter.cn/assets/images/books/s34307358.jpg
   start_date: 2024.12.30
-  finish_date: 2025.3.9
+  finish_date: 
   douban_link: http://book.douban.com/subject/5246800/
   note: 
 
-
+- name: 三体
+  cover: https://noonafter.cn/assets/images/books/s2768378.jpg
+  start_date: 2019.10.20
+  finish_date: 2019-11-29
+  douban_link: https://book.douban.com/subject/2567698/
+  note: 宇宙就是一座黑暗森林，每个文明都是带枪的猎人，像幽灵般潜行于林间，轻轻拨开挡路的树枝，竭力不让脚步发出一点儿声音，连呼吸都必须小心翼翼：他必须小心，因为林中到处都有与他一样潜行的猎人，如果他发现了别的生命，能做的只有一件事：开枪消灭之
