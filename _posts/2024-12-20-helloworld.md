@@ -1,6 +1,7 @@
 ---
 title: Hello world
 tags: hello
+key: hello_comment
 ---
 
 使用github pages&jekyll搭建个人博客的第一篇文章。
