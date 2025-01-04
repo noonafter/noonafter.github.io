@@ -129,10 +129,10 @@ comments:
   gitalk:
     clientID    : Ov23litrlrMCrAjFj8fQ # GitHub Application Client ID
     clientSecret: 5ed6b2141013a16d4ce184026d808df829e8e248 # GitHub Application Client Secret
-    repository  : gitalk-comments # GitHub repo
+    repository  : noonafter.github.io # GitHub repo
     owner       : noonafter # GitHub repo owner
-    admin: [noonafter] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-       # - your GitHub Id
+    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+      - noonafter # - your GitHub Id
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
