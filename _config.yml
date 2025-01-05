@@ -140,7 +140,7 @@ comments:
     app_id      : L0UAGQgv8kKJwAFoYWloBq4i-gzGzoHsz # LeanCloud App id
     app_key     : QAWCNKbGVO2x9ZBX6pL9vJ5y # LeanCloud App key
     placeholder : # Prompt information
-    visitor     : true # false (default)
+    visitor     : false # false (default)
     meta        : # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
 
 
