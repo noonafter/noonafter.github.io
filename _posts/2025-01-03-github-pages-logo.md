@@ -10,6 +10,8 @@ TeXt主题使用![text logo](https://noonafter.cn/assets/favicon-16x16.png)作�
 
 推荐使用 RealFaviconGenerator 来生成 Logo和Favicon，详细教程参考[TeXt主题Logo和Favicon教程](https://kitian616.github.io/jekyll-TeXt-theme/docs/zh/logo-and-favicon)
 
+<!--more-->
+
 ## 工具
 logo设计：<https://turbologo.com/>
 
