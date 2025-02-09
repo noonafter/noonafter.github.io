@@ -1,6 +1,6 @@
 ---
 title: liquid源码分析之二：firpfbch
-tags: blog
+tags: liquid
 ---
 
 ## 概述
@@ -249,10 +249,10 @@ int FIRPFBCH(_synthesizer_execute)(FIRPFBCH() _q,
 
 ### 结构1
 传统信道器原理如下图所示，每一路都是下变频、基带滤波器和抽取M三部分构成
-![conventional channelizer](./conventional_channelizer.png)
+![conventional channelizer](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/conventional_channelizer.png)
 
 以第k路通道为例，原始结构（结构1）如下图所示。
-![chk struct1](chk_struct1.png)
+![chk struct1](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct1.png)
 $x(n)$为接收到的信号，$\theta_k=\frac{2\pi k}{M}$，要求fk/fsa=k/M，
 下变频、滤波后的信号为
 $\begin{aligned}y(n,k)&=\left[x(n)e^{-j\theta_kn}\right]*h(n)\\&=\sum_{r=0}^{N-1}x(n-r)e^{-j\theta_k(n-r)}h(r).\end{aligned}$
@@ -265,7 +265,7 @@ $\begin{aligned}y(n,k)&\begin{aligned}&=\sum_{r=0}^{N-1}x(n-r)e^{-j(n-r)\theta_k
 
 
 可以得到，与结构1等价的结构2：
-![alt text](chk_struct2.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct2.png)
 
 即下变频+低通滤波等价于带通滤波+下变频，带通滤波器$h(n)e^{j\theta_k n}$对应的Z变换为$H(Ze^{-j\theta_k})$。注意，结构1和2的等价并不涉及抽取操作。
 
@@ -273,17 +273,17 @@ $\begin{aligned}y(n,k)&\begin{aligned}&=\sum_{r=0}^{N-1}x(n-r)e^{-j(n-r)\theta_k
 ### 结构3
 抽取之后，公式中下变频$e^{-j\theta_k n}$都变成$e^{-j\theta_k Mn}$，这说明只需要对抽取后的信号进行下变频即可，可以得到结构3
 
-![alt text](chk_struct3.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct3.png)
 
 ### 结构4
 由于$\theta_k=\frac{2\pi k}{M}$，则$e^{-j\theta_k Mn}=1$，因此这里下变频可以忽略，可以得到结构4
 
-![alt text](chk_struct4.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct4.png)
 
 ### 结构5
 这里暂时将带通滤波器$h(n)e^{j\theta_k n}$视为一个普通的滤波器$h(n)$，并将这个滤波器写为多相滤波器的形式（任意FIR滤波器都能够写成多相的形式，本质是加法的结合律）
 
-![alt text](chk_struct5.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct5.png)
 
 $
 H(Z) = \begin{array}{ccccc}
@@ -305,12 +305,12 @@ $G(Z) = H(Z) \bigg|_{Z = e^{-j\theta_k} Z} = H(e^{-j\theta_k} Z)$
 
 可以得到带通滤波器的多相结构
 
-![alt text](chk_struct6.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct6.png)
 
 ### 结构7 
 利用[noble identity](https://www.dsprelated.com/freebooks/sasp/Multirate_Noble_Identities.html)，将抽取和滤波操作互换位置，可以得到结构7。这里抽取和延迟可以一起看成一个换向器，数据从最下方开始添加。
 
-![alt text](chk_struct7.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct7.png)
 
 输出的$y(nM,k)$只是第k通道的数据，可以表示为
 
@@ -318,7 +318,7 @@ $y(nM,k)=\sum_{r=0}^{M-1}y_r(nM)e^{j\left(2\pi/M\right)rk}.$
 
 对于通道k来说，每一个支路上乘以的$e^{jrk\frac{2\pi}{M}}$都是一个常数，如果只想要某个通道上的数据，完全可以只利用结构7来进行实现。如果需要将M个通道的数据全部输出出来，刚好可以利用IFFT的操作来计算以上公式，从而同时获得M个通道的输出。准确来说，下图中$IFFT$应该是$ M\cdot IFFT$
 
-![alt text](chs.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chs.png)
 
 
 
@@ -327,7 +327,7 @@ $y(nM,k)=\sum_{r=0}^{M-1}y_r(nM)e^{j\left(2\pi/M\right)rk}.$
 
 将_analyzer_run函数源码中的操作用框图表示如下
 
-![alt text](chs_fft.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chs_fft.png)
 
 
 ## 关于fft的理解
@@ -336,7 +336,7 @@ $y(nM,k)=\sum_{r=0}^{M-1}y_r(nM)e^{j\left(2\pi/M\right)rk}.$
 
 假设输入信号的采样率为192KHz，执行8点FFT，则对应的滤波器组幅度响应如下图所示。
 
-![alt text](chs_hh.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chs_hh.png)
 
 从图中可以看出，fft实际上是让信号通过了一个sinc滤波器组，由于通道之间相互重叠，无法直接利用fft来实现通道划分的功能，并且由于sinc函数旁瓣很高且衰减很慢，输出信号很容易受到其他通道上大信号的影响，直接使用fft做频谱监测仪
 
@@ -360,7 +360,7 @@ $y(nM,k)=\sum_{r=0}^{M-1}y_r(nM)e^{j\left(2\pi/M\right)rk}.$
 
 
 以下为加上hanning窗后的滤波器组的幅度响应。
-![alt text](chs_hanning.png)
+![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chs_hanning.png)
 
 可以发现，加窗虽然会使得旁瓣衰减加快，但会导致主瓣宽度增加，从而降低频率分辨率。因此，要得到高精度的频谱监视器，还是需要使用多相信道器，但原型滤波器依然会导致计算复杂度以及信号延迟的增加。
 
