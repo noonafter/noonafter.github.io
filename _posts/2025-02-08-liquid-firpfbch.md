@@ -5,13 +5,13 @@ tags: liquid
 
 ## 概述
 liquid库中多相信道器包括三个源文件，分别是
-firpfbch.proto.c，最大抽取多相信道器，即M/P=1
-firpfbch2.proto.c，半抽取多相信道器，即M/P=2
-firpfbchr.proto.c，有理数过采样多相信道器，即M/P=rational
+- firpfbch.proto.c，即最大抽取多相信道器，M/P=1
+- firpfbch2.proto.c，即半抽取多相信道器，M/P=2
+- firpfbchr.proto.c，即有理数过采样多相信道器，M/P=rational
 
-firpfbch和firpfbch2使用时都需要先指明类型，这是因为两者都实现了synthesiser和analyzer，因此在_create时需要指定类型，而firpfbchr只实现了analyzer，因此不需要指定类型（M/P=有理数时很难实现synthesiser，而且应用少实现的意义不大）
+其中，M为通道个数，P为抽取/内插倍数，firpfbch和firpfbch2使用时都需要先指明类型，这是因为两者都实现了synthesizer和analyzer，因此在_create时需要指定类型，而firpfbchr只实现了analyzer，因此不需要指定类型（M/P=有理数时很难实现synthesizer，而且应用的意义不大）
 
-首先对最大抽取多相信道器firpfbch进行说明。
+本文对最大抽取多相信道器firpfbch进行说明。
 
 <!--more-->
 
@@ -33,7 +33,7 @@ firpfbch和firpfbch2使用时都需要先指明类型，这是因为两者都实
 
 - 第一步：使用firpfbch_crcf_create创建多相信道器对象，并返回一个firpfbch_crcf_s *指针，这里注意第三个参数为子滤波器长度（firpfbch2和r中为滤波器长度一半）
 - 第二步：使用firpfbch_crcf_analyzer_execute或firpfbch_crcf_synthesizer_execute执行一次，输入M个点，输出M个点。
-- 第三步：使用完毕后，使用firpfbch_crcf_destroy(q)销毁对象。
+- 第三步：使用完毕后，使用firpfbch_crcf_destroy销毁对象。
 
 ## 源码分析
 
@@ -122,7 +122,7 @@ if (_p == 0)
     q->x = (T*) FFT_MALLOC((q->num_channels)*sizeof(T));
     q->X = (T*) FFT_MALLOC((q->num_channels)*sizeof(T));
 
-    // 创建fftplan，这里其实有点问题，无论synthesiser还是analysiser，都只用FFT_DIR_BACKWARD就行，对应了后面analysiser进行fft时，输入反序，因此做的也是ifft
+    // 创建fftplan，这里其实有点问题，无论synthesizer还是analysiser，都只用FFT_DIR_BACKWARD就行，对应了后面analysiser进行fft时，输入反序，因此做的也是ifft
     if (q->type == LIQUID_ANALYZER)
         q->fft = FFT_CREATE_PLAN(q->num_channels, q->X, q->x, FFT_DIR_FORWARD, FFT_METHOD);
     else
@@ -245,7 +245,7 @@ int FIRPFBCH(_synthesizer_execute)(FIRPFBCH() _q,
 ```
 
 ## 原理
-最大抽取多相信道器的原理较为简单，核心思想是通过多相分解和Noble Identity的等效结构，将滤波器组的设计和实现简化为更高效的形式，下面对analyzer和synthesiser的原理进行简要说明，详细原理参考论文[Digital Receivers and Transmitters Using Polyphase Filter Banks for Wireless Communications](https://ieeexplore.ieee.org/document/1193158)。
+最大抽取多相信道器的原理较为简单，核心思想是通过多相分解和Noble Identity的等效结构，将滤波器组的设计和实现简化为更高效的形式，下面对analyzer和synthesizer的原理进行简要说明，详细原理参考论文[Digital Receivers and Transmitters Using Polyphase Filter Banks for Wireless Communications](https://ieeexplore.ieee.org/document/1193158)。
 
 ### 结构1
 传统信道器原理如下图所示，每一路都是下变频、基带滤波器和抽取M三部分构成
@@ -255,13 +255,13 @@ int FIRPFBCH(_synthesizer_execute)(FIRPFBCH() _q,
 ![chk struct1](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct1.png)
 $x(n)$为接收到的信号，$\theta_k=\frac{2\pi k}{M}$，要求fk/fsa=k/M，
 下变频、滤波后的信号为
-$\begin{aligned}y(n,k)&=\left[x(n)e^{-j\theta_kn}\right]*h(n)\\&=\sum_{r=0}^{N-1}x(n-r)e^{-j\theta_k(n-r)}h(r).\end{aligned}$
+$$\begin{aligned}y(n,k)&=\left[x(n)e^{-j\theta_kn}\right]*h(n)\\&=\sum_{r=0}^{N-1}x(n-r)e^{-j\theta_k(n-r)}h(r).\end{aligned}$$
 
 
 ### 结构2
 将以上公式展开，
 
-$\begin{aligned}y(n,k)&\begin{aligned}&=\sum_{r=0}^{N-1}x(n-r)e^{-j(n-r)\theta_k}h(r)\end{aligned}\\&=\sum_{r=0}^{N-1}x(n-r)e^{-jn\theta_k}h(r)e^{jr\theta_k}\\&=e^{-jn\theta_k}\sum_{r=0}^{N-1}x(n-r)h(r)e^{jr\theta_k}.\end{aligned}$
+$$\begin{aligned}y(n,k)&\begin{aligned}&=\sum_{r=0}^{N-1}x(n-r)e^{-j(n-r)\theta_k}h(r)\end{aligned}\\&=\sum_{r=0}^{N-1}x(n-r)e^{-jn\theta_k}h(r)e^{jr\theta_k}\\&=e^{-jn\theta_k}\sum_{r=0}^{N-1}x(n-r)h(r)e^{jr\theta_k}.\end{aligned}$$
 
 
 可以得到，与结构1等价的结构2：
@@ -285,7 +285,7 @@ $\begin{aligned}y(n,k)&\begin{aligned}&=\sum_{r=0}^{N-1}x(n-r)e^{-j(n-r)\theta_k
 
 ![alt text](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct5.png)
 
-$
+$$
 H(Z) = \begin{array}{ccccc}
 h(0) & + & h(M+0)Z^{-M} & + & h(2M+0)Z^{-(2M+0)} & + & \cdots \\
 h(1)Z^{-1} & + & h(M+1)Z^{-(M+1)} & + & h(2M+1)Z^{-(2M+1)} & + & \cdots \\
@@ -294,14 +294,14 @@ h(3)Z^{-3} & + & h(M+3)Z^{-(M+3)} & + & h(2M+3)Z^{-(2M+3)} & + & \cdots \\
 \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
 h(M-1)Z^{-(M-1)} & + & h(2M-1)Z^{-(2M-1)} & + & h(3M-1)Z^{-(3M-1)} & + & \cdots
 \end{array}\\= H_0(Z^M) + Z^{-1}H_1(Z^M) + Z^{-2}H_2(Z^M) + \cdots + Z^{-(M-1)}H_{M-1}(Z^M)
-$
+$$
 
 
 ### 结构6
 令$h(n) = h(n)e^{j\theta_k n}$代入多相滤波器中，
 
 
-$G(Z) = H(Z) \bigg|_{Z = e^{-j\theta_k} Z} = H(e^{-j\theta_k} Z)$
+$$G(Z) = H(Z) \bigg|_{Z = e^{-j\theta_k} Z} = H(e^{-j\theta_k} Z)$$
 
 可以得到带通滤波器的多相结构
 
@@ -314,7 +314,9 @@ $G(Z) = H(Z) \bigg|_{Z = e^{-j\theta_k} Z} = H(e^{-j\theta_k} Z)$
 
 输出的$y(nM,k)$只是第k通道的数据，可以表示为
 
-$y(nM,k)=\sum_{r=0}^{M-1}y_r(nM)e^{j\left(2\pi/M\right)rk}.$
+$$
+y(nM,k)=\sum_{r=0}^{M-1}y_r(nM)e^{j\left(2\pi/M\right)rk}.
+$$
 
 对于通道k来说，每一个支路上乘以的$e^{jrk\frac{2\pi}{M}}$都是一个常数，如果只想要某个通道上的数据，完全可以只利用结构7来进行实现。如果需要将M个通道的数据全部输出出来，刚好可以利用IFFT的操作来计算以上公式，从而同时获得M个通道的输出。准确来说，下图中$IFFT$应该是$ M\cdot IFFT$
 
