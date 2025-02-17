@@ -5,9 +5,9 @@ tags: liquid
 
 ## 概述
 liquid库中多相信道器包括三个源文件，分别是
-- firpfbch.proto.c，即最大抽取多相信道器，M/P=1
-- firpfbch2.proto.c，即半抽取多相信道器，M/P=2
-- firpfbchr.proto.c，即有理数过采样多相信道器，M/P=rational
+- firpfbch.proto.c，最大抽取多相信道器，M/P=1
+- firpfbch2.proto.c，半抽取多相信道器，M/P=2
+- firpfbchr.proto.c，有理数过采样多相信道器，M/P=rational
 
 其中，M为通道个数，P为抽取/内插倍数，firpfbch和firpfbch2使用时都需要先指明类型，这是因为两者都实现了synthesizer和analyzer，因此在_create时需要指定类型，而firpfbchr只实现了analyzer，因此不需要指定类型（M/P=有理数时很难实现synthesizer，而且应用的意义不大）
 
@@ -255,6 +255,7 @@ int FIRPFBCH(_synthesizer_execute)(FIRPFBCH() _q,
 ![chk struct1](https://noonafter.cn/assets/images/posts/2025-02-08-liquid-firpfbch/chk_struct1.png)
 $x(n)$为接收到的信号，$\theta_k=\frac{2\pi k}{M}$，要求fk/fsa=k/M，
 下变频、滤波后的信号为
+
 $$\begin{aligned}y(n,k)&=\left[x(n)e^{-j\theta_kn}\right]*h(n)\\&=\sum_{r=0}^{N-1}x(n-r)e^{-j\theta_k(n-r)}h(r).\end{aligned}$$
 
 
@@ -301,7 +302,9 @@ $$
 令$h(n) = h(n)e^{j\theta_k n}$代入多相滤波器中，
 
 
-$$G(Z) = H(Z) \bigg|_{Z = e^{-j\theta_k} Z} = H(e^{-j\theta_k} Z)$$
+$$
+G(Z) = H(Z) \bigg|_{Z = e^{-j\theta_k} Z} = H(e^{-j\theta_k} Z)
+$$
 
 可以得到带通滤波器的多相结构
 
