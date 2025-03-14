@@ -1,6 +1,6 @@
 ---
 title: QCPColorMap瀑布图卡顿原因及解决方法
-tags: qt, qcustomplot
+tags: qt qcustomplot
 ---
 
 # QCPColorMap绘制瀑布图卡顿原因及解决方案
@@ -35,6 +35,17 @@ int mKeySize, mValueSize;// 矩阵维度
 };
 ```
 
+值得注意的是，QCPColorMap和QImage的坐标系统存在一些差异，如下表所示
+
+| 特性 | `QImage` | `QCPColorMap` (水平方向) | `QCPColorMap` (垂直方向) |
+|---------------------|-----------------------------------|-----------------------------------|-----------------------------------|
+| **横轴方向** | 从左到右 | 从左到右 | 从下到上 |
+| **纵轴方向** | 从上到下 | 从下到上 | 从左到右 |
+| **原点位置** | 左上角 `(0, 0)` | 左下角 `(keyMin, valueMin)` | 左下角 `(keyMin, valueMin)` |
+| **像素/单元格访问** | `setPixel(x, y, color)` | `setCell(x, y, value)` | `setCell(x, y, value)` |
+
+其中，使用QCPColorMap(xAxis,yAxis)绑定xAxis和yAxis，则方向是Vertical；使用QCPColorMap(yAxis,xAxis)绑定yAxis和xAxis，则方向是Horizontal。
+
 ### 2. 绘制流程
 
 查看QCPColorMap::draw函数中关于图像更新的代码如下，
@@ -50,6 +61,7 @@ updateMapImage()是将数据转化为像素的核心函数，其通过遍历内�
  * 数据修改（setData/setCell）
  * 数据范围变化（setDataRange）
  * 颜色梯度更新（setGradient）
+
 
 ### 3. 卡顿原因
 从updateMapImage()源码中可以发现，计算像素的地方使用的是一个for循环，即for (int line=0; line<lineCount; ++line)
