@@ -1,5 +1,5 @@
 ---
-title: BLOG折腾笔记之四：jekyll项目结构
+title: BLOG搭建笔记之四：jekyll项目结构
 tags: blog
 ---
 

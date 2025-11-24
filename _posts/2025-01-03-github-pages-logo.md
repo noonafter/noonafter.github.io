@@ -1,5 +1,5 @@
 ---
-title: BLOG折腾笔记之三：Logo和Favicon
+title: BLOG搭建笔记之三：Logo和Favicon
 tags: blog
 ---
 
