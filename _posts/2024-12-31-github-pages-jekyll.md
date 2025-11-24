@@ -1,5 +1,5 @@
 ---
-title: BLOG折腾笔记之一：快速开始
+title: BLOG搭建笔记之一：快速开始
 tags: blog
 ---
 
