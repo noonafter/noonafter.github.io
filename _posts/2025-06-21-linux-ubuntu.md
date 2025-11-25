@@ -10,6 +10,12 @@ tags: linux, ubuntu
 ### 安装步骤参考
 
 详细安装步骤可参考：[Ubuntu双系统安装指南](https://blog.csdn.net/2401_84064328/article/details/137232169)
+注意安装完成之后，需要更新镜像源，否则apt install可能无法正常工作，具体方法参考[WSL安装与使用](https://blog.csdn.net/wangtcCSDN/article/details/137950545)
+
+另外，建议先安装clash verge rev和chrome。可以利用github镜像下载lash verge rev的deb安装包，例如：
+https://bgithub.xyz/clash-verge-rev/clash-verge-rev/releases/download/autobuild/Clash.Verge_2.4.4+autobuild.1125.d3dc40e_amd64.deb
+
+随后，到[Chrome官网](https://www.google.com/intl/zh-CN/chrome/)下载chrome的deb安装包。
 
 ### 注意事项
 
@@ -186,6 +192,5 @@ free -h
 *   **Ubuntu推荐**：新版本Ubuntu默认使用交换文件
 *   **双系统友好**：不会影响Windows分区
 
-***
-
-*本文档提供了Ubuntu双系统安装、软件管理和系统优化的完整指南，帮助开发者获得更好的Linux开发体验。*
+## Ubuntu系统的卸载/删除
+卸载ubuntu，保留Windows，具体步骤参考文章: https://blog.csdn.net/ZChen1996/article/details/115436436
