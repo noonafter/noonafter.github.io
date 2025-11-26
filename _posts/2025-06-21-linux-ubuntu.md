@@ -17,6 +17,8 @@ https://bgithub.xyz/clash-verge-rev/clash-verge-rev/releases/download/autobuild/
 
 随后，到[Chrome官网](https://www.google.com/intl/zh-CN/chrome/)下载chrome的deb安装包。
 
+其他安装软件可以参考[Ubuntu 24必装软件、使用技巧与系统优化](https://blog.csdn.net/excnies/article/details/146516131)
+
 ### 注意事项
 
 *   **U盘启动问题**：如果U盘启动失败，可能是电脑与安装盘启动方式不兼容，建议更换制作工具重试
