@@ -9,27 +9,46 @@ tags: linux, ubuntu
 
 ### 安装步骤参考
 
-详细安装步骤可参考：[Ubuntu双系统安装指南](https://blog.csdn.net/2401_84064328/article/details/137232169)
-注意安装完成之后，需要更新镜像源，否则apt install可能无法正常工作，具体方法参考[WSL安装与使用](https://blog.csdn.net/wangtcCSDN/article/details/137950545)
+详细安装步骤可参考：[Ubuntu双系统安装指南](https://blog.csdn.net/2401_84064328/article/details/137232169)，注意事项:
+- U盘启动问题：如果U盘启动失败，可能是电脑与安装盘启动方式不兼容，建议更换制作工具重试
+- 安装选项：进入Ubuntu安装界面后，建议选择"其他选项"进行手动安装，以便更好地控制分区布局
 
-另外，建议先安装clash verge rev和chrome。可以利用github镜像下载lash verge rev的deb安装包，例如：
-https://bgithub.xyz/clash-verge-rev/clash-verge-rev/releases/download/autobuild/Clash.Verge_2.4.4+autobuild.1125.d3dc40e_amd64.deb
+完成安装后，建议执行下列步骤：
 
-随后，到[Chrome官网](https://www.google.com/intl/zh-CN/chrome/)下载chrome的deb安装包。
+1. [更换国内镜像源](https://www.cnblogs.com/mjsly/articles/18729258)（注意不同版本需要更换对应的codename）,否则apt install可能无法正常工作；
+2. [配置中文输入法](https://blog.csdn.net/m0_59457317/article/details/145578223)，调整首选项，词频，打开云输入，配置完成后，系统自带的IBUS输入法就很好用；
+3. [设置交换文件](#创建交换文件推荐方案),防止内存占满，系统卡顿或崩溃；
+4. 修改分辨率，改[壁纸](https://www.bizhihui.com/)。
 
-其他安装软件可以参考[Ubuntu 24必装软件、使用技巧与系统优化](https://blog.csdn.net/excnies/article/details/146516131)
 
-### 注意事项
+另外，建议先安装[Clash verge rev](https://app.chongjin01.icu/Linux/)和[Chrome](https://www.google.com.hk/intl/en_uk/chrome/)。其他软件可以参考[Ubuntu 24必装软件、使用技巧与系统优化](https://blog.csdn.net/excnies/article/details/146516131)，下载软件最好去官网，ubuntu自带商店的软件可能并不好用。
 
-*   **U盘启动问题**：如果U盘启动失败，可能是电脑与安装盘启动方式不兼容，建议更换制作工具重试
-*   **安装选项**：进入Ubuntu安装界面后，建议选择"其他选项"进行手动安装，以便更好地控制分区布局
 
 ## Ubuntu软件的安装
 
-Ubuntu提供多种软件安装方式，主要包括：
+以下简要记录一下，软件安装的过程，并对安装方式进行总结。
+
+安装包安装：
+Clash verge rev，并导入订阅地址；
+Chrome，并打开同步，安装插件；
+VScode，调整界面文字大小，设置用户名和邮箱，设置git代理；- Clion，工具->创建桌面图标；以及
+Spark-store、WeChat、wps-office等
+
+
+命令行安装：
+``` shell
+sudo apt install git
+sudo apt-get install gnuradio
+sudo apt-get install gnuradio-dev cmake libspdlog-dev clang-format
+sudo apt install uhd-host # uhd驱动
+sudo uhd_images_downloader，# usrp镜像
+```
+
+编译安装：liquid-dsp包，自定义的gnuradio库（如果用clion，可能需要clean）
+
 
 ### 安装方式分类
-
+Ubuntu提供多种软件安装方式，主要包括：
 #### 1. 命令行安装
 
 *   系统级软件管理
@@ -63,7 +82,7 @@ Ubuntu提供多种软件安装方式，主要包括：
 | 可执行文件/安装包 | .deb文件, AppImage, 二进制tar.gz         | .exe, .msi安装程序, 便携版应用          | 用户友好，图形化或解压即用，但更新需手动     |
 | 源码编译      | ./configure && make && make install | Visual Studio, CMake, MinGW    | 最大控制权，可定制优化，但复杂耗时        |
 
-### 技术要点说明
+对比后可以发现：
 
 *   **语言级包管理器**（如pip、npm、vcpkg）本质上是跨平台的，它们工作在各自语言的运行时之上，与底层操作系统相对解耦
 *   **Windows发展趋势**：传统上严重依赖可执行文件安装方式，但正在积极拥抱系统级包管理和现代化分发模式
@@ -99,7 +118,17 @@ Ubuntu提供多种软件安装方式，主要包括：
 
 ## 软件的卸载
 
-Ubuntu在大多数情况下的软件卸载比Windows更简单彻底，前提是知道软件是通过什么方式安装的。
+Ubuntu在大多数情况下的软件卸载比Windows更简单彻底。如果软件是使用apt install或dpkg安装的，可以使用如下步骤进行卸载：
+
+1. 查找软件准确的名称
+```shell
+dpkg --get-selections | grep <name>
+```
+
+2. 进行卸载
+```shell
+sudo apt-get remove clash-verge
+```
 
 ### Ubuntu vs Windows 卸载复杂度对比
 
@@ -154,11 +183,12 @@ Ubuntu在大多数情况下的软件卸载比Windows更简单彻底，前提是�
 
 6.  **让交换文件开机自动启用**
     ```bash
-    sudo nano /etc/fstab
+    sudo gedit /etc/fstab
     ```
     在文件末尾添加：
-        /swapfile none swap sw 0 0
-
+    ```bash
+    /swapfile none swap sw 0 0
+    ```
 7.  **优化交换文件设置**（可选但推荐）
     *   调整swappiness（控制系统使用交换空间的倾向，默认60）：
         ```bash
