@@ -127,7 +127,7 @@ dpkg --get-selections | grep <name>
 
 2. 进行卸载
 ```shell
-sudo apt-get remove clash-verge
+sudo apt-get remove <name>
 ```
 
 ### Ubuntu vs Windows 卸载复杂度对比
@@ -225,4 +225,5 @@ free -h
 *   **双系统友好**：不会影响Windows分区
 
 ## Ubuntu系统的卸载/删除
-卸载ubuntu，保留Windows，具体步骤参考文章: https://blog.csdn.net/ZChen1996/article/details/115436436
+卸载ubuntu，保留Windows，具体步骤参考文章: 
+https://blog.csdn.net/ZChen1996/article/details/115436436
