@@ -14,11 +14,11 @@ tags: linux
 
 - Docker - “应用容器化”方案
 
-- 双系统 - “硬件直通”方案
+- 双系统 - “直接访问硬件”方案
 
 
 <!--more-->
-楼主将上述所有的方法都试了一遍，个人觉得，对于轻量化的开发需求，WSL的使用最方便，最简单，而为了获得完整的linux体验，推荐使用安装双系统，下面详细分析每种工具的优缺点。
+楼主将上述所有的方法都试了一遍，个人觉得，对于轻量化的开发需求，WSL的使用最方便，最简单；如果是为了验证系统的某个特性或下载特定版本系统对应的软件包/镜像，推荐使用虚拟机，灵活方便；如果有特殊的交叉编译需求，可以选择MSYSY2；如果是中度或重度使用，为了获得完整的linux体验，推荐使用安装双系统。下面详细分析每种工具的优缺点。
 
 
 ## WSL介绍
@@ -38,35 +38,6 @@ WSL基于微软自己的Hiper V虚拟机技术，其使用的是微软构建的�
 - 虚拟化开销：仍有轻量级虚拟化层，性能略低于裸机
 
 - 硬件访问限制：难以直接访问USB设备、GPU（虽有改进但仍有限制）
-
-
-
-## WSL安装
-1 打开windows功能，勾选以下两个选项：**适用于Linux的Windows子系统**，**虚拟机平台**
-
-2 重启后，命令行输入wsl --install查看帮助，选择适合发行版，比如：
-
-```cmd
-wsl --install -d Ubuntu
-
-```
-如果报错：WslRegisterDistribution failed with error: 0x800701bc,则需要进行手动安装，参考[Win11安装Ubuntu子系统报错](https://blog.csdn.net/qq_51908382/article/details/140606794)
-
-3 安装完之后，命令行中输入wsl进入，使用下列命令更换镜像源
-```bash
- vim /etc/apt/sources.list.d/ubuntu.sources 
- ```
-国内源的地址可以参考[WSL最新安装教程](https://blog.csdn.net/wangtcCSDN/article/details/137950545)
-
-
-4 更换之后记得对源进行更新:
-```bash
-sudo apt update
-```
-
-否则会报错Unable to Locate Package
-
-
 
 ## 虚拟机
 当然现在VMware Workstation Pro 对个人用户已经完全免费，也可以尝试使用虚拟机来获得完整且独立的linux环境。
@@ -100,7 +71,7 @@ sudo apt update
 
 ```bash
 sudo apt install open-vm-tools
-````
+```
 
 
 ## Cygwin / MSYS2
