@@ -1,5 +1,5 @@
 ---
-title: BLOG折腾笔记之二：自定义域名
+title: BLOG搭建笔记之二：自定义域名
 tags: blog
 ---
 
@@ -58,8 +58,62 @@ nslookup -q=txt _github-pages-challenge-username.xxxx.cn
 
 **Step2**：GitHub仓库配置。进入仓库，点击Settings->Pages，找到Custom domain，输入自己购买的域名，点击Save。几分钟后，GitHub会在仓库中自动添加CNAME文件，这时便可以通过自定义的域名来访问pages站点了。
 
+## Cloudflare CDN 加速
+由于国内访问github服务器不是很稳定，所以可以使用Cloudflare对静态网站进行缓存和加速。Cloudflare 是全球领先的 CDN 服务提供商，通过分布在全球的数据中心节点缓存你的网站内容，让用户从最近的节点获取数据，大幅提升访问速度和稳定性。
+
+第一步：注册和添加网站
+
+注册 Cloudflare 账户，访问 cloudflare.com，使用邮箱注册，选择免费套餐即可。添加网站，控制台点击 "Add a Site"，输入你的域名（如 example.com），选择免费计划。
+
+第二步：更改域名服务器
+
+这是最关键的一步！Cloudflare 会提供两个域名服务器：
+
+lara.ns.cloudflare.com
+
+paul.ns.cloudflare.com
+
+具体操作步骤：
+
+登录你的域名注册商（如腾讯云），进入控制台，选择修改DNS服务器。
+
+替换为 Cloudflare 提供的域名服务器
+
+等待生效（通常需要几分钟到几小时）
+
+第三步：配置 DNS 记录
+
+在 Cloudflare 的 DNS 设置中，添加你的网站记录，可以添加多条记录，包括A，AAAA和CNAME记录等。
+
+第四步：开启 CDN 缓存
+进入 Caching → Configuration：
+
+推荐缓存设置
+
+缓存级别：标准
+
+浏览器缓存 TTL：1个月
+
+总是在线(always onlion)：开启
+
+第五步：SSL/TLS 配置
+
+在 SSL/TLS 标签页：
+
+加密模式：选择 "完全(严格)"
+
+始终使用 HTTPS：开启
+
+HSTS：建议开启加强安全
+
+
+
+
+
+
 ## 参考文章
 
 自定义域名教程参考：
 <https://blog.csdn.net/qq_34902437/article/details/140298754>
-
+Cloudflare配置参考：
+<https://ecomools.com/cloudflare-cdn/>
