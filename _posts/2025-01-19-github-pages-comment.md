@@ -8,7 +8,16 @@ jekyll内置了对许多评论系统的支持，包括disqus, gitalk, valine。�
 
 ## 配置步骤
 
-配置步骤非常简单，在leancloud官网申请一个账户，并创建应用获取app id和key，然后填入_config.yml文件即可。详细配置步骤，参考[Valine快速开始](https://valine.js.org/quickstart.html)
+配置步骤非常简单，在leancloud官网申请一个账户，并创建应用获取app id和key，然后填入_config.yml文件即可。详细配置步骤，参考[Valine快速开始](https://valine.js.org/quickstart.html)。
+
+这里注意，超过30天没有请求被应用会被归档，会显示
+```
+Code 504: The app is archived, please restore in console before use. [400 GET]
+```
+因此需要定期访问博客，要恢复的话需要实名认证。之前LeanCloud就貌似因为敏感问题被封过一段时间，国内节点关闭注册了，之后开放了就需要实名认证才能创建项目。
+​ 由于之前注册的是国际服，所以无需认证也可以创建项目，不过数据是要不回来了。
+目前的方法就只能是删除原来的项目，重新创建一个项目来接收Comments。
+可以到控制台-设置-基本信息-删除应用中进行删除，然后重新创建一个。
 
 ## 关于Pageview文章点击量
 
