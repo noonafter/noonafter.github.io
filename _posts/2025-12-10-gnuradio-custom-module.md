@@ -7,7 +7,9 @@ tags: gnuradio
 ## 概述
 
 在GNURadio中，**module（模块）** 和 **block（块）** 
-是两个不同层次的概念。一个**module**是一个完整的、可安装的软件包，它包含了一组相关的**block**以及相关的支持文件（如接口、实现、GRC配置文件、文档、示例等）。而**block**是GNURadio中信号处理的基本单元，每个block实现特定的信号处理功能（如滤波、调制等）。通常，一个module中会包含多个block，这些block共同协作完成某一类信号处理任务。简单来说，block是功能的实现最小单元，而module是block的集合。在开发自定义功能时，我们会首先创建一个module，然后在其中添加一个或多个block。在GNU Radio Companion（GRC）中，我们使用的是一个个具体的block，而这些block来自不同的module。比如在官网教程[Your First Flowgraph](https://wiki.gnuradio.org/index.php?title=Your_First_Flowgraph)中Signal Source就是一个block，其属于Waveform Generators这个module。
+是两个不同层次的概念。一个**module**是一个完整的、可安装的软件包，它包含了一组相关的**block**以及相关的支持文件（如接口、实现、GRC配置文件、文档、示例等）。而**block**是GNURadio中信号处理的基本单元，每个block实现特定的信号处理功能（如滤波、调制等）。通常，一个module中会包含多个block，这些block共同协作完成某一类信号处理任务。简单来说，block是实现功能的最小单元，而module是block的集合。
+
+在开发自定义功能时，我们会首先创建一个module，然后在其中添加一个或多个block。在GNU Radio Companion（GRC）中，我们使用的是一个个具体的block，而这些block来自不同的module。比如在官网教程[Your First Flowgraph](https://wiki.gnuradio.org/index.php?title=Your_First_Flowgraph)中Signal Source就是一个block，其属于Waveform Generators这个module。
 
 
 ## 1. 创建新模块：module
@@ -18,7 +20,7 @@ tags: gnuradio
 gr_modtool newmod custom_module
 ```
 
-该命令会生成一个标准化的module目录框架，整个目录对应一个完整的cmake工程：
+该命令会生成一个标准化的module目录框架，整个目录对应一个完整的CMake工程：
 
 ```bash
 apps/          # 应用程序目录
@@ -38,7 +40,7 @@ MANIFEST.md    # 模块清单
 * 此目录存放模块在图形化界面（GRC）的配置文件。其中包含YAML（.yml）格式的配置文件，如`custom_module_my_block.yml`。该文件是图形化模块的**声明性描述**。
 
 **`include/<module_name>/` - 公开类的头文件目录**：
-* 此目录存放模块对外的**C++接口声明**，即用户在其他C++项目中通过`#include`来使用的头文件。例如`my_block.h`。这里定义的类是一个“壳”，采用**Pimpl（Pointer to Implementation）** 设计模式，将具体实现完全隐藏。
+* 此目录存放模块对外的**C++接口声明**，即公开类的头文件。例如`my_block.h`。这里定义的类是一个“壳”，采用**Pimpl（Pointer to Implementation）** 设计方法，将具体实现完全隐藏。
 * GNU Radio的绑定系统会对这些头文件进行哈希校验。若你修改了此目录下的头文件（如增删公共成员函数），**必须**执行`gr_modtool bind my_block`命令来更新绑定，否则后续构建会失败。
 
 **`lib/` - 实现类的文件目录**：
@@ -67,19 +69,44 @@ gr_modtool add block
 
 ## 3. 修改C++实现文件
 
-### 3.1 修改实现类文件
+### 3.1 修改构造器
 
-编辑`lib/block_impl.cc`和`lib/block_impl.h`，如果这一步修改了构造器的签名，需要对应的修改公开类的头文件，然后需要使用gr_modtool bind block重新绑定。如果使用clion等ide进行构建，可能需要手动清空cmake的缓存。
+编辑`lib/block_impl.cc`和`lib/block_impl.h`，如果这一步修改了构造器的签名，需要对应地修改公开类的头文件，然后需要使用gr_modtool bind block重新绑定。如果使用clion等IDE进行构建，可能需要手动清空cmake的缓存。
 
 ```cpp
 // block_impl.cc中定义输入输出类型
-// 注意：无论是数据量还是向量，都直接使用样本类型，长度在构造函数中设置
-typedef gr_complex input_type;
-typedef gr_complex output_type;
+// 注意：无论是数据量还是向量，都直接使用sample的类型，具体长度在构造函数中设置
+using input_type = gr_complex;
+using output_type = gr_complex;
+// 公开类的工厂方法，如果修改了构造器的签名，make方法也需要相应地修改
+hop_mod::sptr hop_mod::make(double bw_hop, double ch_sep, double freq_carrier, double fsa_hop, double hop_rate, int vlen)
+{
+    return gnuradio::make_block_sptr<hop_mod_impl>(bw_hop, ch_sep, freq_carrier, fsa_hop, hop_rate, vlen);
+}
+
+
+/*
+ * The private constructor
+ */
+hop_mod_impl::hop_mod_impl(double bw_hop, double ch_sep, double freq_carrier, double fsa_hop, double hop_rate, int vlen)
+// 调用父类sync_block的构造器，这一步确定输入输出向量的长度
+    : gr::sync_block("hop_mod",
+                     gr::io_signature::make(1, 1, vlen*sizeof(input_type)),
+                     gr::io_signature::make(1, 1, vlen*sizeof(output_type))),
+    // 初始化列表...
+    d_bw_hop(bw_hop),
+    d_ch_sep(ch_sep)
+{
+    // 构造器函数体...
+    initialize_frequency_table();
+    initialize_hop_sequence();
+}
 ```
 
-### 3.2 实现work函数
+### 3.2 修改work函数
+work函数是自定义模块中的核心，所有的信号处理逻辑都是在该函数中完成，包括调用tag和message相关的函数。work函数中一般使用一个for循环，来依次处理每个item（可能是sample，可能是vector）。
 
+work函数由调度器在运行时自动调用，其详细机制与调度器密切相关，包括如何理解work函数的参数，history机制等等，具体可以参考另一篇文章:[work函数与调度器]()。
 ```cpp
 int hop_interp_impl::work(int noutput_items,
                           gr_vector_const_void_star& input_items,
@@ -102,200 +129,164 @@ int hop_interp_impl::work(int noutput_items,
 }
 ```
 
+## 4. 修改yml配置文件
 
-
-## 4. 配置GRC YML文件
-
-GRC配置文件定义模块在图形界面中的行为。
-
-### 4.1 处理变长（vlen）参数
-
-**方案1：使用Python辅助函数（推荐）**
-
-在`python/custom_module/__init__.py`中添加辅助函数：
-
-```python
-def calc_vlen(param1, param2):
-    """计算向量长度"""
-    return param1 * param2
-```
-
-在YML配置文件中导入并使用：
+GRC目录下的YAML配置文件定义了模块在图形化界面中的行为、外观和接口。这是连接C++/Python代码与图形界面的关键文件。一个典型的YAML配置文件包含以下几个主要部分：
 
 ```bash
-id: freq_hopping_slot_frame
-label: slot_frame
-category: '[freq_hopping]'
+id: freq_hopping_hop_mod      # 块在GRC中的唯一标识符，通常为`<模块名>_<块名>`
+label: Frequency Hopping Modulator  # 在GRC工具栏中显示的友好名称
+category: '[freq_hopping]'    # 指定块在GRC的哪个分类下出现
 
 templates:
-  imports: |
-    from gnuradio import custom_module
-    from gnuradio.custom_module import calc_vlen
-  make: custom_module.slot_frame(${hop_rate}, ${M_order}, ${info_seed})
+  imports: from gnuradio import freq_hopping  # 导入Python模块的语句
+  make: freq_hopping.hop_mod(${bw_hop}, ${ch_sep}, ${freq_carrier}, ${fsa_hop}, ${hop_rate}, ${vlen})  # 如何创建该块的Python对象
+
+parameters:  # 块的可调参数列表
+  - id: hop_rate
+    label: Hopping Rate (hops/s)
+    dtype: float
+    default: 5
+  - id: vlen
+    label: Vector Length
+    dtype: int
+    default: 1
+
+inputs:  # 输入端口定义
+  - label: in
+    domain: stream
+    dtype: complex
+    vlen: ${vlen}  # 引用参数vlen的值
+
+outputs: # 输出端口定义
+  - label: out
+    domain: stream
+    dtype: complex
+    vlen: ${vlen}
 ```
+yml文件和python文件结合非常紧密，可以利用python代码来使[block的输入/输出向量支持长度可变]()
 
-**方案2：直接嵌入Python表达式（受限）**
 
-*   仅支持单行表达式
-*   不支持多行代码、赋值、import等复杂操作
 
-**方案3：调用C++函数（复杂，不推荐）**
 
-1.  在公开类中声明静态函数并实现
-2.  修改Python绑定文件暴露函数
-3.  需要处理哈希校验问题
 
 ## 5. 编写测试用例
 
-### 5.1 创建测试文件
+### 5.1 创建测试框架
+
+GNU Radio使用C++单元测试框架（如Boost.Test）。添加一个块的测试用例：
 
 ```bash
-gr_modtool add -t qa block_name
+# 在模块根目录下执行
+gr_modtool add -t qa my_block
 ```
 
-### 5.2 测试框架限制
+此命令会在`python/`目录下生成`qa_my_block.py`（Python测试）或在`lib/`目录下生成`qa_my_block.cc`（C++测试，如果创建时选择语言为C++）。以下主要关注C++测试。
 
-GNU Radio测试框架：
+### 5.2 测试框架的限制与应对
 
-*   为每个测试文件生成独立可执行文件
-*   仅链接到公开的block类（只有`make`方法）
-*   无法直接访问`impl`类的内部函数
+生成的测试框架会为每个测试文件创建一个独立的测试可执行程序。它**仅链接到公开的block类库**，这意味着测试程序只能访问公开头文件（`block.h`）中声明的接口（主要是`make`工厂函数）。如果你想在测试中直接调用实现类（`block_impl`）中的**静态辅助函数**或测试内部状态，会遇到“未定义的引用”错误，因为实现类的符号没有被导出到库的公开接口中。
 
-### 5.3 解决方案
-
-如需测试`impl`类的静态函数：
-
-*   将函数实现放在头文件中（内联）
-*   测试文件直接包含`block_impl.h`
+**解决方案**：\
+将需要测试的内部函数（如静态辅助函数）在实现类的头文件（`block_impl.h`）中定义为**内联（inline）函数**。这样，测试文件通过`#include "block_impl.h"`就可以直接使用这些函数，而无需链接。
 
 ```cpp
-// 在block_impl.h中定义内联函数
-class block_impl
+// lib/my_block_impl.h
+class my_block_impl
 {
 public:
-    static inline int helper_function(int x) {
-        return x * 2;
-    }
     // ... 其他成员
+    // 静态辅助函数，定义为inline以便测试
+    static inline int calculate_something(int x, int y) {
+        return x * y;
+    }
 };
 
-// 在qa_block.cc中
-#include "block_impl.h"
+// lib/qa_my_block.cc
+#include "my_block_impl.h" // 包含实现类头文件
 
-TEST_CASE("Test helper function") {
-    REQUIRE(block_impl::helper_function(2) == 4);
+BOOST_AUTO_TEST_CASE(t_calculate_something) {
+    // 可以直接测试内部静态函数
+    BOOST_CHECK_EQUAL(my_block_impl::calculate_something(3, 4), 12);
 }
+
+// 也可以通过公开接口创建块进行功能测试
+BOOST_AUTO_TEST_CASE(t_basic_functionality) {
+    auto block = my_block::make(/* 参数 */);
+    // 构造测试输入数据，调用block的general_work/forecast等（通常较复杂）
+    // 更常见的是使用QA工具函数，如`gr::blocks::null_source`等构建小型流图进行测试。
+}
+```
+
+### 5.3 运行测试
+
+在构建目录（通常是`build/`）下，可以使用`ctest`命令运行所有测试，或直接运行生成的测试可执行文件。
+
+```bash
+cd build
+# 运行所有测试
+ctest
+# 运行特定测试，并输出详细信息
+ctest -R qa_my_block -V
+# 或者直接运行测试程序
+./lib/qa_my_block_test
 ```
 
 ## 6. 构建与安装
 
-### 6.1 命令行构建流程
+官方推进使用如下命令，进行构建和安装：
 
 ```bash
 # 清理构建目录
 rm -rf build
-
-# 创建构建目录并配置
+# 创建构建目录并进入
 mkdir build && cd build
-# 根据cmakelist生成对应构建系统的文件，如makefile
-cmake ..  # 对应CLion的Reload按钮
-# 编译
-make      # 对应CLion的Build按钮
-# 安装
-sudo make install
-sudo ldconfig  # 更新共享库缓存
-```
-
-### 6.2 自动化脚本
-
-创建`build_install.sh`：
-
-```bash
-#!/bin/bash
-set -e
-
-echo "清理构建目录..."
-rm -rf build
-
-echo "配置项目..."
-mkdir build
-cd build
+# 运行CMake配置
 cmake ..
-
-echo "编译模块..."
-make -j$(nproc)
-
-echo "安装模块..."
+# 编译项目
+make
+# 安装（需要sudo权限）
 sudo make install
-sudo ldconfig
-
-echo "构建完成！"
-```
-
-### 6.3 CLion开发流程
-
-在CLion中：
-
-1.  **Reload Project**：执行CMake配置
-2.  **Build**：调用Ninja/Make编译
-3.  **手动安装**（在终端中）：
-
-```bash
-cd cmake-build-debug
-sudo cmake --build . --target install
+# 更新动态链接库缓存
 sudo ldconfig
 ```
 
-CLion的CMake配置包含：
+在修改实现文件后，每次手动执行上述命令过于繁琐，可以创建自动化脚本`rebuild_install.sh`，来简化操作。关于对安装命令的解释可以参考另一篇文章[安装流程与install命令]()
 
-*   构建类型（Debug/Release）
-*   生成器（Ninja/Make）
-*   Python虚拟环境路径
-*   源码和构建目录
 
-### 6.4 Install命令详解
+## 7 卸载与删除
 
-```bash
-sudo cmake --build . --target install
-```
+### 7.1 卸载已安装的模块
 
-| 组件       | 安装路径                                                      | 作用                 |
-| :------- | :-------------------------------------------------------- | :----------------- |
-| C++共享库   | `/usr/local/lib/x86_64-linux-gnu/`                        | 运行时库，包含核心功能        |
-| C++头文件   | `/usr/local/include/gnuradio/module/`                     | 开发接口               |
-| CMake配置  | `/usr/local/lib/cmake/gnuradio-module/`                   | 支持`find_package()` |
-| Python扩展 | `/usr/local/lib/python3.x/site-packages/gnuradio/module/` | Python绑定           |
-| Python模块 | 同上                                                        | Python包结构          |
-| Python工具 | `/usr/local/bin/`                                         | 命令行工具              |
-| GRC块定义   | `/usr/local/share/gnuradio/grc/blocks/`                   | 图形界面模块             |
-
-### 6.5 卸载模块
+卸载是安装的逆过程，从系统目录中移除模块文件，但**不影响你的开发源代码**。
 
 ```bash
-# Ninja构建系统
-sudo ninja uninstall
+# 进入你的模块构建目录
+cd build
 
-# Make构建系统  
-sudo make uninstall
-
-# 通用方法
+# 通用方法（推荐）
 sudo cmake --build . --target uninstall
+
+# 或者根据你的构建系统
+sudo make uninstall      # Makefile
+sudo ninja uninstall    # Ninja
 ```
 
-**注意**：卸载仅从安装目录删除文件，不影响开发目录。
+### 7.2 从开发目录中删除块
 
-## 7. 删除块
-
-从开发目录中删除块（谨慎操作）：
+如果你想从**源代码树**中永久移除一个块（不可逆操作），使用`gr_modtool`：
 
 ```bash
-gr_modtool rm block
+# 在模块根目录下执行
+gr_modtool rm my_block
 ```
 
-此操作会：
+此命令会：
 
-*   删除块相关的所有文件
-*   更新CMake配置
-*   **不可恢复**，请确保已备份
+*   删除`grc/`、`include/`、`lib/`、`python/`目录下与该块相关的文件。
+*   更新`CMakeLists.txt`，将该块从构建列表中移除。
+*   **注意：此操作会删除文件，请务必确认或已备份。**
+
+
 
 
