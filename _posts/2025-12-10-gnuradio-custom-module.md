@@ -66,6 +66,12 @@ gr_modtool add block
 ```
 
 该命令会交互式询问，确定block type，language，arguement。
+在添加完新block后，如果直接在clion中进行编译，会报错，例如：
+```bash
+/home/lc/gr-freq_hopping/python/freq_hopping/bindings/frame_recover_python.cc:28:10: fatal error: frame_recover_pydoc.h: 没有那个文件或目录
+28 | #include <frame_recover_pydoc.h>
+```
+需要重新清理然后reload cmake project，或者按照[第6节](#构建与安装)操作手动进行操作
 
 ## 3. 修改C++实现文件
 

@@ -122,7 +122,7 @@ Ubuntu在大多数情况下的软件卸载比Windows更简单彻底。如果软�
 
 1. 查找软件准确的名称
 ```shell
-dpkg --get-selections | grep <name>
+dpkg -l | grep -i <name>
 ```
 
 2. 进行卸载

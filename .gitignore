@@ -25,3 +25,8 @@ Gemfile.lock
 _site/
 .jekyll-metadata
 .jekyll-cache/
+
+# Blog sync tool - sensitive files
+blog_sync/config.json
+blog_sync/csdn_cookies.json
+blog_sync/__pycache__/

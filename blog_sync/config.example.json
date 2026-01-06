@@ -1,0 +1,14 @@
+{
+  "cnblogs": {
+    "enabled": true,
+    "blog_name": "your_blog_name",
+    "username": "your_metaweblog_login_name",
+    "token": "your_metaweblog_access_token"
+  },
+  "csdn": {
+    "enabled": true,
+    "username": "your_csdn_username",
+    "password": "your_csdn_password",
+    "headless": false
+  }
+}
