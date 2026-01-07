@@ -71,7 +71,7 @@ gr_modtool add block
 /home/lc/gr-freq_hopping/python/freq_hopping/bindings/frame_recover_python.cc:28:10: fatal error: frame_recover_pydoc.h: 没有那个文件或目录
 28 | #include <frame_recover_pydoc.h>
 ```
-需要重新清理然后reload cmake project，或者按照[第6节](#构建与安装)操作手动进行操作
+需要重新清理然后reload cmake project，或者按照[第6节](#6-构建与安装)操作手动进行操作
 
 ## 3. 修改C++实现文件
 
