@@ -35,7 +35,7 @@ bash
 ### 一、理论模型：经典的四个阶段
 
 理论上，从源代码到可执行文件的编译过程可以清晰地划分为四个顺序阶段，每个阶段都有其明确的输入、输出和核心任务。
-![compile-4stage](https://noonafter.cn/assets/images/posts/2025-01-07-c-cpp-compile/compile-4stage.png)
+![compile-4stage](https://noonafter.cn/assets/images/posts/2025-01-07-c-cpp-compile/compile-4stage.png?w=400)
 #### 阶段1：预处理（Preprocess）
 
 *   **核心任务**：处理所有以 `#` 开头的预处理指令，展开宏、包含头文件，生成一个纯净的“编译单元”。
