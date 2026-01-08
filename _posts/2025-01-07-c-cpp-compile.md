@@ -35,7 +35,7 @@ bash
 ### 一、理论模型：经典的四个阶段
 
 理论上，从源代码到可执行文件的编译过程可以清晰地划分为四个顺序阶段，每个阶段都有其明确的输入、输出和核心任务。
-![compile-4stage](https://noonafter.cn/assets/images/posts/2025-01-07-c-cpp-compile/compile-4stage.png?w=400)
+![compile-4stage](https://noonafter.cn/assets/images/posts/2025-01-07-c-cpp-compile/compile-4stage.png)
 #### 阶段1：预处理（Preprocess）
 
 *   **核心任务**：处理所有以 `#` 开头的预处理指令，展开宏、包含头文件，生成一个纯净的“编译单元”。
@@ -145,7 +145,7 @@ bash
 理解这种对应关系，不仅能帮助你在遇到编译错误时准确定位阶段（是语法错误、链接错误还是头文件找不到？），也能让你更深入地洞察构建过程的本质。
 
 
-## 编译自动化
+## 编译自动化：从Make到CMake
 
 ### 一、为什么需要构建系统？
 
