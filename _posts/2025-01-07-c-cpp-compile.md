@@ -12,10 +12,9 @@ tags: c/cpp compile
 
 在 Linux 下进行 C/C++ 开发，第一步通常是安装基础工具链：
 
-bash
-
-    sudo apt install build-essential gdb cmake
-
+```bash
+sudo apt install build-essential gdb cmake
+```
 *   **build-essential** 是基础开发套件，包含：
 
     *   **编译器驱动程序**：`gcc`/`g++` - 用户调用的接口，负责协调整个编译流程
@@ -84,7 +83,7 @@ bash
 **1. 驱动程序与真正的编译器（`cc1`）**
 
 ```bash
-    /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v ... hello.c ... -o /tmp/ccRHrYS0.s
+/usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v ... hello.c ... -o /tmp/ccRHrYS0.s
 ```
 从调用过程可以发现：
 * `gcc` 驱动程序并没有直接编译，而是调用了位于 `/usr/libexec/` 目录下的 **`cc1`**，来进行预处理和编译，输出了汇编文件`/tmp/ccRHrYS0.s`。
@@ -94,19 +93,20 @@ bash
 紧接着 `cc1` 的输出中，显示了头文件的搜索路径：
 
 ```bash
-    #include <...> search starts here:
-        /usr/lib/gcc/x86_64-linux-gnu/13/include
-        /usr/local/include
-        /usr/include/x86_64-linux-gnu
-        /usr/include
-    End of search list.
+#include "..." search starts here:
+#include <...> search starts here:
+    /usr/lib/gcc/x86_64-linux-gnu/13/include
+    /usr/local/include
+    /usr/include/x86_64-linux-gnu
+    /usr/include
+End of search list.
 ```
 这解释了为什么你的 `#include <stdio.h>` 能够被正确找到——编译器按照这个优先级列表在系统中查找头文件。
 
 **3. 汇编阶段（`as`）**
 
 ```bash
-    as -v --64 -o /tmp/ccADrca0.o /tmp/ccRHrYS0.s
+as -v --64 -o /tmp/ccADrca0.o /tmp/ccRHrYS0.s
 ```
 这一步调用了 **`as`**，即 GNU 汇编器，将上一步生成的汇编文件 `ccRHrYS0.s` 翻译成机器码，生成目标文件 `ccADrca0.o`。这正是理论模型的 **汇编阶段**。
 
@@ -114,7 +114,7 @@ bash
 链接是命令最长、最复杂的一步：
 
 ```bash
-    /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 ... /tmp/ccADrca0.o -lgcc -lc ... -o a.out
+/usr/libexec/gcc/x86_64-linux-gnu/13/collect2 ... /tmp/ccADrca0.o -lgcc -lc ... -o a.out
 ```
 **`collect2`**，是链接器 `ld` 的一个封装器，负责收集所有需要链接的部件，最后输出可执行文件a.out。链接内容包括：
 *   **你的代码**：`/tmp/ccADrca0.o`（上一步生成的目标文件）。
@@ -134,7 +134,7 @@ bash
     理论阶段:    预处理        ->        编译         ->        汇编         ->        链接
     实际工具:   (集成在cc1中)  ->        cc1          ->         as          ->   collect2 / ld
     临时文件:   (内部处理)     ->   .s (汇编文件)      ->   .o (目标文件)     ->    a.out (可执行文件)
-    用户命令:   gcc -E hello.c    gcc -S hello.c        gcc -c hello.c        gcc hello.c
+    用户命令:   gcc -E hello.c    gcc -S hello.c          gcc -c hello.c        gcc hello.c
 ```
 **核心要点**：
 
@@ -158,20 +158,19 @@ bash
 
 假设我们有一个小型 C 语言项目，包含以下文件：
 
-text
-
-    my_project/
-    ├── main.c
-    ├── utils.c
-    └── utils.h
-
+```bash
+my_project/
+├── main.c
+├── utils.c
+└── utils.h
+```
 `main.c` 中调用了 `utils.c` 中定义的函数。如果手动编译，我们可能需要这样：
 
-bash
-
-    gcc -c utils.c -o utils.o
-    gcc -c main.c -o main.o
-    gcc main.o utils.o -o myapp
+```bash
+gcc -c utils.c -o utils.o
+gcc -c main.c -o main.o
+gcc main.o utils.o -o myapp
+```
 
 如果每次修改都要重复执行这些命令，不仅效率低下，还容易遗漏步骤。更复杂的是，当 `utils.h` 更新时，我们需要重新编译所有依赖它的源文件（比如 `main.c` 和 `utils.c`），手动管理这些依赖关系几乎是不可能的任务。
 
@@ -181,25 +180,24 @@ bash
 
 在 `my_project` 目录下创建 `Makefile` 文件：
 
-makefile
+```makefile
+CC = gcc
+CFLAGS = -Wall -g
 
-    CC = gcc
-    CFLAGS = -Wall -g
+all: myapp
 
-    all: myapp
+myapp: main.o utils.o
+    $(CC) $(CFLAGS) -o myapp main.o utils.o
 
-    myapp: main.o utils.o
-        $(CC) $(CFLAGS) -o myapp main.o utils.o
+main.o: main.c utils.h
+    $(CC) $(CFLAGS) -c main.c
 
-    main.o: main.c utils.h
-        $(CC) $(CFLAGS) -c main.c
+utils.o: utils.c utils.h
+    $(CC) $(CFLAGS) -c utils.c
 
-    utils.o: utils.c utils.h
-        $(CC) $(CFLAGS) -c utils.c
-
-    clean:
-        rm -f *.o myapp
-
+clean:
+    rm -f *.o myapp
+```
 #### 原理说明
 
 1.  **变量定义**：`CC` 和 `CFLAGS` 是变量，用于定义编译器和编译选项，便于统一修改。
@@ -217,39 +215,36 @@ makefile
 
 #### 使用方式
 
-bash
-
-    make          # 构建整个项目（默认目标 all）
-    make clean    # 清理生成的文件
-    make myapp    # 仅构建 myapp
-
+```bash
+make          # 构建整个项目（默认目标 all）
+make clean    # 清理生成的文件
+make myapp    # 仅构建 myapp
+```
 ### 三、从Make到CMake
 Make 等构建系统虽然强大，但在跨平台或项目结构非常复杂时，编写和维护 Makefile 变得困难。因此，现代 C/C++ 项目更倾向于使用**元构建系统**，如 **CMake**。
 
 CMake 不直接构建项目，而是生成对应平台的构建文件（如 Unix 的 Makefile、Windows 的 Visual Studio 项目文件、Ninja 构建文件等）。你只需编写一个跨平台的 `CMakeLists.txt` 文件来描述项目结构和构建规则。
 
-> 除了 Make 之外，还有许多其他构建系统在实际开发中被广泛使用。例如，Ninja 是一种注重构建速度的现代构建系统；微软的 MSBuild 是 Visual Studio 的原生构建系统；还有针对特定语言的构建工具如 Bazel、Buck 等。
+> 除了 Make 之外，还有许多其他构建系统被广泛使用。例如，Ninja、MSBuild、Bazel、Buck 等。
 
 #### 一个简单的 CMakeLists.txt 示例
 
-cmake
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(MyProject)
 
-    cmake_minimum_required(VERSION 3.10)
-    project(MyProject)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_FLAGS "-Wall -g")
 
-    set(CMAKE_C_STANDARD 11)
-    set(CMAKE_C_FLAGS "-Wall -g")
-
-    add_executable(myapp main.c utils.c utils.h)
-
+add_executable(myapp main.c utils.c utils.h)
+```
 #### 使用流程
 
-bash
-
-    mkdir build && cd build   # 创建并进入构建目录（保持源码目录清洁）
-    cmake ..                  # 生成构建文件（如 Makefile）
-    make                      # 执行构建
-
+```bash
+mkdir build && cd build   # 创建并进入构建目录（保持源码目录清洁）
+cmake ..                  # 生成构建文件（如 Makefile）
+make                      # 执行构建
+```
 #### 优势
 
 *   **跨平台**：一份 `CMakeLists.txt` 可在 Linux、macOS、Windows 上使用。
