@@ -1,6 +1,6 @@
 ---
 title: Clion配置WSL工具链
-tags: linux
+tags: linux clion wsl
 ---
 
 
