@@ -1,5 +1,5 @@
 ---
-title: 使用 CLion 调试无源码程序
+title: Clion调试无源码程序
 tags: clion debug
 ---
 
