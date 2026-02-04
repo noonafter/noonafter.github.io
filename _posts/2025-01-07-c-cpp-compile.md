@@ -19,7 +19,7 @@ sudo apt install build-essential gdb cmake
 
     *   **编译器驱动程序**：`gcc`/`g++` - 用户调用的接口，负责协调整个编译流程
     *   **编译工具集**：`cpp`（预处理器）、cc1（实际的编译器）`as`（汇编器）、`ld`（链接器）等，对应不同编译阶段
-    *   **开发库**：`libc-dev`/`libstdc++-dev`（标准库头文件与实现）
+    *   **开发库**：`libc-dev`/`libstdc++-dev`（POSIX标准库头文件与实现）
     *   **make**：自动化构建工具
 *   **gdb** 是调试器，用于程序调试与问题定位（可参考 [gdb命令概述](https://csapp.cs.cmu.edu/3e/docs/gdbnotes-x86-64.pdf)）
 *   **cmake** 是跨平台的元构建系统，用于生成 Makefile、Ninja 等构建文件，已成为现代 C++ 项目的标配。
