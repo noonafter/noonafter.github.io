@@ -1,6 +1,6 @@
 ---
-title: 链接与库
-tags: c/cpp compile
+title: fork原理解析
+tags: linux fork process
 ---
 
 
