@@ -7,7 +7,7 @@ tags: linear_algebra book
 
 本章进入线性代数中最重要的分解之一——奇异值分解（SVD）。它不仅是特征值分解的推广，更是理解矩阵几何意义、数据降维（如 PCA）和求解线性方程组的核心工具。
 
----
+
 
 ## 7.2 Bases and Matrices in the SVD
 
@@ -29,7 +29,7 @@ $$ AA^T = U \Sigma \Sigma^T U^T \quad \text{或} \quad A^T A = V \Sigma^T \Sigma
 在使用 $A^T A$（或 $AA^T$）求出 $V$（或 $U$）后，最好使用公式 $A v_i = \sigma_i u_i$ 来求解另一组基，而不是单独计算 $AA^T$ 的特征向量。直接分别计算可能会导致特征向量符号不一致的问题。
 > *详细例题可参考吉尔伯特教授关于 SVD 的视频讲解。*
 
----
+
 
 #### 对奇异值分解的深度理解
 
@@ -94,7 +94,7 @@ $$ \text{Eig: } \lambda_1 q_1 q_1^T + \dots \quad \text{vs} \quad \text{SVD: } \
 *   $u_1$ 求出了数据最集中的方向（第一主成分）。
 *   这本质上也是**垂直最小二乘法**（Total Least Squares）的解。
 
----
+
 
 ### 例题与习题
 
@@ -123,7 +123,7 @@ $$ \text{Eig: } \lambda_1 q_1 q_1^T + \dots \quad \text{vs} \quad \text{SVD: } \
 **启发题**：
 *   **22**：SVD 分解和特征值分解的另一种关系。
 
----
+
 
 ### 💡 求证：$A$ 列满秩 $\iff A^T A$ 可逆
 

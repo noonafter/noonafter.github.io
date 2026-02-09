@@ -6,7 +6,7 @@ tags: linear_algebra book
 
 本章进入线性代数的核心内容，探讨特征值与特征向量的性质、矩阵对角化、微分方程组应用以及对称矩阵与正定矩阵的特性。
 
----
+
 
 ## 6.1 特征值介绍
 
@@ -29,10 +29,10 @@ $Ax = \lambda x$
 方程 $|A - \lambda I| = 0$。
 *   $n$ 阶矩阵 $A$ 有 $n$ 个特征值。
 *   特征值可能重复，可能为复数，可能为 0。
-*   展开形式：$|A - \lambda I| = (\lambda_1 - \lambda)(\lambda_2 - \lambda)\dots(\lambda_n - \lambda)$。
+*   展开形式：$\vert A - \lambda I\vert  = (\lambda_1 - \lambda)(\lambda_2 - \lambda)\dots(\lambda_n - \lambda)$。
 
 **两个重要检验性质**
-1.  行列式：$|A| = \lambda_1 \lambda_2 \dots \lambda_n$
+1.  行列式：$\vert A\vert  = \lambda_1 \lambda_2 \dots \lambda_n$
 2.  迹：$\sum A_{ii} = \lambda_1 + \lambda_2 + \dots + \lambda_n = \text{trace}(A)$
 
 **特征向量的求解**
@@ -71,7 +71,7 @@ $Ax = \lambda x$
 *   基础题：见书上 √
 *   启发题：见书上 ☆
 
----
+
 
 ## 6.2 对角化一个矩阵
 
@@ -123,7 +123,7 @@ $u_{k+1} = Au_k$。
 *   基础题：见书上 √
 *   启发题：见书上 ☆
 
----
+
 
 ## 6.3 微分方程组
 
@@ -183,7 +183,7 @@ $$ u = e^{At} u(0) $$
 *   启发题：见书上 ☆
 *   重点关注：15, 16, Note 2
 
----
+
 
 ## 6.4 对称矩阵
 
@@ -226,7 +226,7 @@ $$ A = U R U^H $$
         *   共轭反对称矩阵（实数域为实反对称矩阵）：特征值虚数。
         *   酉矩阵（包含正交矩阵）：特征值模为 1。
 
----
+
 
 ## 6.5 正定矩阵
 
