@@ -30,8 +30,8 @@ tags: linear_algebra book
     *   行对调：行列式反号。
     *   行加减：行列式不变。
 3.  **对行线性**：单行提取公因子 $t$；单行可分解为两个行列式之和。
-4.  **乘法法则**：$|AB| = |A||B|$。
-5.  **行列等价**：$|A^T| = |A|$。
+4.  **乘法法则**：$\vert AB \vert  = \vert A\vert \vert B\vert $。
+5.  **行列等价**：$\vert A^T\vert  = \vert A\vert $。
 
 **计算方阵行列式方法 1**
 利用消元法将矩阵转化为三角形式（$A = LU$），然后主元相乘。
@@ -97,8 +97,8 @@ $$ x_j = \frac{|B_j|}{\det A} $$
 其中 $B_j$ 是将 $A$ 的第 $j$ 列替换为向量 $b$ 得到的矩阵。
 
 **几何意义：体积**
-*   **二维**：平行四边形的面积 $= |\det A|$。
-*   **三维**：平行六面体的体积 $= |\det A| = |(\mathbf{u} \times \mathbf{v}) \cdot \mathbf{w}|$。
+*   **二维**：平行四边形的面积 $=\vert \det A\vert $。
+*   **三维**：平行六面体的体积 $= \|\det A\| = |(\mathbf{u} \times \mathbf{v}) \cdot \mathbf{w}|$。
 
 **为什么行列式代表面积/体积？**
 以二维为例 $| \mathbf{a}_1, \mathbf{a}_2 |$：
