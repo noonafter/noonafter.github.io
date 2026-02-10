@@ -73,7 +73,21 @@ tags: memory os
             *   如果 `PTE.Addr` 非零：说明数据在磁盘/Swap 区，PTE地址栏未数据所在磁盘中地址，内核调度 I/O 进行换入。
             *   如果 `PTE.Addr` 为零：说明是请求填零页，内核分配物理页并清零。
 
-
+```mermaid
+graph TD
+    A[CPU发出虚拟地址 VA] --> B{格式是否规范?}
+    B -- 否: 非规范地址 --> C[硬件拦截: GPF 异常]
+    B -- 是: 进入 MMU --> D{查页表: PTE.V == 1?}
+    
+    D -- 是: 已缓存 --> E[物理地址 PA: 直接访存]
+    D -- 否: 触发 Page Fault --> F[内核接管: 查 VMA 账本]
+    
+    F -- 账本无记录: 未映像 --> G[非法地址: Segmentation Fault]
+    F -- 账本有记录: 合法 --> H{检查 PTE 地址位}
+    
+    H -- 有磁盘索引 --> I[从磁盘/Swap 载入数据]
+    H -- 全 0 --> J[现场分配并填零: Demand-Zero]
+```
 
 ## 三、 总结
 
