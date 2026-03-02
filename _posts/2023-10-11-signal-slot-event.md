@@ -105,7 +105,6 @@ while (!exit_was_called) {
 
 下面的代码演示了事件循环的退出时机、不同连接类型的行为以及线程间交互。
 ```cpp
-
 #include <QDebug>
 #include <QCoreApplication>
 #include <QTimer>
@@ -145,7 +144,6 @@ public slots:
 
     void start() {
         doStuff();
-
         qDebug() << QThread::currentThreadId() << ": Bye!";
     }
 };
@@ -192,9 +190,16 @@ int main(int argc, char **argv) {
 ### 运行结果与详细解析
 
 **运行结果示例：**
-
-    <TEXT>main thread id: 0x165c0x165c : Emit signal one0x165c : Execute slot one0x165c : Emit signal finished0x5578 : Execute slot one0x165c : Emit signal two0x165c : Execute slot two0x165c : Bye!
-
+```
+main thread id: 0x165c
+0x165c : Emit signal one
+0x165c : Execute slot one
+0x165c : Emit signal finished
+0x5578 : Execute slot one
+0x165c : Emit signal two
+0x165c : Execute slot two
+0x165c : Bye!
+```
 *(注意：线程 ID 和 `0x5578` 处的打印顺序可能会因操作系统调度而略有不同，但逻辑流如下)*
 
 **详细步骤解析：**
