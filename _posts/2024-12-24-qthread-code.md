@@ -1,5 +1,5 @@
 ---
-title:【Qt源码分析】QThread类
+title: 【Qt源码分析】QThread
 tags: qt thread
 ---
 
