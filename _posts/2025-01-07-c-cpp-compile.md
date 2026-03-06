@@ -1,6 +1,6 @@
 ---
 title: C/C++编译过程基础
-tags: c/cpp compile
+tags: c/c++ compile
 ---
 
 
