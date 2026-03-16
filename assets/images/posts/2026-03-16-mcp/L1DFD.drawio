@@ -1,0 +1,172 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="第 1 页" id="c9nMS4RmsEEZSqCHLDDU">
+    <mxGraphModel dx="1426" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-31" parent="1" style="whiteSpace=wrap;strokeWidth=2;dashed=1;gradientColor=none;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="500" width="620" x="110" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-32" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="E1: 用户 User" vertex="1">
+          <mxGeometry height="54" width="160" x="502" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-33" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="E2: 大模型 LLM&#xa;(Opus/R1)" vertex="1">
+          <mxGeometry height="78" width="168" x="498" y="883" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-34" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="E3: MCP Server&#xa;(Python DB工具)" vertex="1">
+          <mxGeometry height="78" width="177" x="176.5" y="883" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-35" parent="1" style="whiteSpace=wrap;strokeWidth=2;rounded=1;" value="P1: UI与&#xa;会话管理" vertex="1">
+          <mxGeometry height="78" width="170" x="497" y="313" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-36" parent="1" style="whiteSpace=wrap;strokeWidth=2;rounded=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=default;" value="P2: 上下文与&#xa;协议组装" vertex="1">
+          <mxGeometry height="78" width="170" x="180" y="313" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-37" parent="1" style="whiteSpace=wrap;strokeWidth=2;rounded=1;" value="P3: 意图路由与&#xa;API通信" vertex="1">
+          <mxGeometry height="78" width="170" x="497" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-38" parent="1" style="whiteSpace=wrap;strokeWidth=2;rounded=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=default;imageWidth=24;fillOpacity=100;" value="P4: MCP 客户端&#xa;分发引擎" vertex="1">
+          <mxGeometry height="78" width="170" x="180" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-41" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-35" style="startArrow=none;endArrow=block;exitX=0.162;exitY=0.993;entryX=0.233;entryY=-0.004;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" target="X7hIwqx7cJCm6ZxvZZaT-59" value="4. 存入用户消息">
+          <mxGeometry relative="1" x="-0.291" y="5" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="505.98" y="493.9000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-42" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-35" style="startArrow=none;endArrow=block;exitX=0;exitY=0.25;entryX=1;entryY=0.25;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-36" value="5. 触发上下文构建">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-43" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-59" style="startArrow=none;endArrow=block;entryX=1;entryY=0.5;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-36" value="6. 提取历史记录">
+          <mxGeometry relative="1" x="-0.3331" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="494" y="530" />
+              <mxPoint x="450" y="530" />
+              <mxPoint x="450" y="352" />
+            </Array>
+            <mxPoint x="490" y="530" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-44" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-61" style="startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=0.704;entryY=1.018;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-36" value="7. 提取可用工具">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="294.9000000000001" y="491" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-45" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-36" style="startArrow=none;endArrow=block;exitX=0.947;exitY=0.981;entryX=0.001;entryY=0.516;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;entryPerimeter=0;" target="X7hIwqx7cJCm6ZxvZZaT-37" value="8. LLM 标准 Payload">
+          <mxGeometry relative="1" x="0.2559" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="390" y="390" />
+              <mxPoint x="390" y="710" />
+              <mxPoint x="497" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-46" edge="1" parent="1" style="startArrow=none;endArrow=block;exitX=0;exitY=0.5;entryX=1;entryY=0.5;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" value="11. Tool Call 事件">
+          <mxGeometry relative="1" x="0.0029" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="497" y="729" as="sourcePoint" />
+            <mxPoint x="350" y="729" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-47" edge="1" parent="1" style="startArrow=none;endArrow=block;exitX=0.225;exitY=-0.005;entryX=0.225;entryY=0.994;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" value="14. Tool &#xa;返回结果">
+          <mxGeometry relative="1" x="0.0005" y="16" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="216.25" y="669.6099999999999" as="sourcePoint" />
+            <mxPoint x="216.25" y="390.5319999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-48" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-36" style="startArrow=none;endArrow=block;exitX=1;exitY=0.75;entryX=0;entryY=0.25;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-37" value="15. 包含结果的&#xa;新 Payload">
+          <mxGeometry relative="1" x="0.1523" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="420" y="372" />
+              <mxPoint x="420" y="690" />
+              <mxPoint x="497" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-49" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-37" style="startArrow=none;endArrow=block;exitX=0.85;exitY=0;entryX=0.85;entryY=0.978;rounded=0;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-35" value="18. 解析为纯文本">
+          <mxGeometry relative="1" x="-0.3588" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-50" edge="1" parent="1" style="startArrow=none;endArrow=block;exitX=0.623;exitY=1.026;entryX=0.721;entryY=-0.017;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="X7hIwqx7cJCm6ZxvZZaT-59" value="19. 存入AI回复">
+          <mxGeometry relative="1" x="0.2625" y="3" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="586.9100000000001" y="393.028" as="sourcePoint" />
+            <mxPoint x="592.1400000000001" y="497.55000000000007" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-51" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-38" style="startArrow=none;endArrow=block;exitX=0.707;exitY=-0.003;entryX=0.5;entryY=1;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-61" value="2. 存入工具Schema">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="307.5500000000002" y="586.0999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-52" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-34" style="startArrow=none;endArrow=block;entryX=0.784;entryY=1.013;rounded=0;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;exitX=0.772;exitY=-0.003;exitDx=0;exitDy=0;exitPerimeter=0;" target="X7hIwqx7cJCm6ZxvZZaT-38" value="1. 工具列表&#xa;(MCP协议)">
+          <mxGeometry relative="1" x="-0.3605" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="313" y="880" />
+              <mxPoint x="313" y="880" />
+            </Array>
+            <mxPoint x="310" y="880" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-53" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-32" style="startArrow=none;endArrow=block;exitX=0.25;exitY=1;rounded=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" value="3. 提问">
+          <mxGeometry relative="1" x="-0.2907" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="542" y="313" />
+            </Array>
+            <mxPoint x="542" y="313" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-54" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-35" style="startArrow=none;endArrow=block;exitX=0.75;exitY=0;entryX=0.75;entryY=1;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-32" value="20. 渲染">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="622" y="313" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-55" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-37" style="startArrow=none;endArrow=block;exitX=0.47;exitY=1;entryX=0.25;entryY=0;rounded=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-33" value="9. HTTP 请求&#xa;(Prompt + Tools)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="748" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-56" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-33" style="startArrow=none;endArrow=block;exitX=0.75;exitY=0;rounded=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" value="10. HTTP 响应&#xa;(Function Call)">
+          <mxGeometry relative="1" x="-0.1628" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points" />
+            <mxPoint x="624" y="922" as="sourcePoint" />
+            <mxPoint x="624" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-57" edge="1" parent="1" style="startArrow=none;endArrow=block;exitX=0.118;exitY=1;entryX=0.134;entryY=-0.009;rounded=0;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" value="12. JSON-RPC请求&#xa;[tools/call]">
+          <mxGeometry relative="1" x="0.3934" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="212.06000000000006" y="748" as="sourcePoint" />
+            <mxPoint x="212.21799999999996" y="882.298" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-58" edge="1" parent="1" source="X7hIwqx7cJCm6ZxvZZaT-34" style="startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" target="X7hIwqx7cJCm6ZxvZZaT-38" value="13. 执行结果">
+          <mxGeometry relative="1" x="0.2346" y="5" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-59" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=partialRectangle;right=0;" value="D1: 对话历史库" vertex="1">
+          <mxGeometry height="50" width="130" x="494" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-60" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&quot;&gt;系统主体：平台 (MCP Host - 例如 Cursor / Claude Desktop)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="20" width="350" x="110" y="276" as="geometry" />
+        </mxCell>
+        <mxCell id="X7hIwqx7cJCm6ZxvZZaT-61" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=partialRectangle;right=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=default;labelBackgroundColor=default;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;D2: MCP 能力&lt;/span&gt;&lt;br style=&quot;forced-color-adjust: none; padding: 0px; margin: 0px; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;注册表&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="130" x="234" y="500" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
