@@ -66,8 +66,8 @@ class JekyllParser:
                         # 数组格式: [tag1, tag2]
                         self.tags = [t.strip() for t in value.strip('[]').split(',')]
                     else:
-                        # 单个tag
-                        self.tags = [value]
+                        # 空格分隔的多个tag
+                        self.tags = [t.strip() for t in value.split() if t.strip()]
 
     def get_title(self) -> str:
         """获取文章标题"""

@@ -10,7 +10,6 @@ from pathlib import Path
 
 from parser import JekyllParser
 from cnblogs_publisher import CnblogsPublisher
-from csdn_publisher import CsdnPublisher
 
 
 def load_config(config_path: str = "config.json") -> dict:
@@ -62,6 +61,7 @@ def sync_to_csdn(parser: JekyllParser, config: dict) -> bool:
     print("开始同步到CSDN...")
     print("="*50)
 
+    from csdn_publisher import CsdnPublisher
     publisher = CsdnPublisher(headless=config.get('headless', False))
 
     try:

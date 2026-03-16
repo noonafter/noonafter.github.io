@@ -4,6 +4,7 @@
 """
 import xmlrpc.client
 from typing import Optional
+import markdown
 
 
 class CnblogsPublisher:
@@ -65,9 +66,15 @@ class CnblogsPublisher:
                 print(f"✓ 博客ID: {self.blog_id}")
 
             # 构建文章结构
+            # 将 Markdown 转换为 HTML
+            html_content = markdown.markdown(
+                content,
+                extensions=['fenced_code', 'tables', 'codehilite']
+            )
+
             post = {
                 'title': title,
-                'description': content,
+                'description': html_content,
                 'categories': categories or [],
                 'mt_keywords': ','.join(tags) if tags else '',
             }
