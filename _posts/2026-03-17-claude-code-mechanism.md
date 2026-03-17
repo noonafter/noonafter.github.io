@@ -3,16 +3,13 @@ title: Claude Code 工作机制深度解析：基于抓包数据的逆向分析
 tags: llm cli agent
 ---
 
-# 
-
-## 前言
 
 本文通过对 Claude Code CLI 工具的 HTTP 抓包分析，深入探讨其底层工作机制，包括 System Prompt 设计、Tools 架构、Skills 系统以及渐进式披露（Progressive Disclosure）策略。这些设计理念对构建高质量的 AI Agent 对话系统具有重要参考价值。
 
 ## 一、整体架构概览
 
 ### 1.1 请求结构
-拦截到claude code发出的http如下图。
+拦截到Claude Code发出的http如下图（由于Claude Code默认使用的是双向https协议，Charles无法进行抓包，所以只能使用支持http的api地址，这里使用的是火山引擎，模型是doubao-seed-2-0-lite-260215）。
 
 ![cc_http](https://noonafter.cn/assets/images/posts/2026-03-17-claude-code-mechanism/cc_http_request.png)
 
