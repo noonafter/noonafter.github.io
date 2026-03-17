@@ -1,4 +1,9 @@
-# Claude Code 工作机制深度解析：基于抓包数据的逆向分析
+---
+title: Claude Code 工作机制深度解析：基于抓包数据的逆向分析
+tags: llm cli agent
+---
+
+# 
 
 ## 前言
 
@@ -8,6 +13,7 @@
 
 ### 1.1 请求结构
 拦截到claude code发出的http如下图。
+
 ![cc_http](https://noonafter.cn/assets/images/posts/2026-03-17-claude-code-mechanism/cc_http_request.png)
 
 可以发现，Claude Code 使用标准的 Anthropic API 格式，主要包含三个核心部分：
