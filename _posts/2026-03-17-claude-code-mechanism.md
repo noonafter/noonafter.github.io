@@ -1,37 +1,60 @@
 ---
-title: Claude Code 工作机制深度解析：基于抓包数据的逆向分析
-tags: llm cli agent
+title: Claude Code 工作机制深度解析：基于抓包数据逆向分析
+tags: llm agent skills
 ---
 
+本文通过对 Claude Code CLI 工具进行 HTTP 抓包，分析并探讨其底层工作机制，包括 System Prompt 设计、Tools 架构、Skills 系统以及渐进式披露（Progressive Disclosure）策略。这些设计理念对构建高质量的 AI Agent 对话系统具有重要参考价值。
 
-本文通过对 Claude Code CLI 工具的 HTTP 抓包分析，深入探讨其底层工作机制，包括 System Prompt 设计、Tools 架构、Skills 系统以及渐进式披露（Progressive Disclosure）策略。这些设计理念对构建高质量的 AI Agent 对话系统具有重要参考价值。
+**抓包环境说明**
+
+由于Claude Code默认使用的是双向 HTTPS 协议，Charles无法进行抓包，所以只能使用支持 HTTP 的地址，具体配置如下:
+
+- 工具：Charles
+- 代理：HTTP_PROXY="http://127.0.0.1:8888"
+- 协议：HTTP（原 HTTPS 双向通信）
+- API：火山引擎 API
+- 模型：doubao-seed-2-0-lite-260215
 
 ## 一、整体架构概览
 
 ### 1.1 请求结构
-拦截到Claude Code发出的http如下图（由于Claude Code默认使用的是双向https协议，Charles无法进行抓包，所以只能使用支持http的api地址，这里使用的是火山引擎，模型是doubao-seed-2-0-lite-260215）。
+拦截到Claude Code发出的API请求如下图所示。
 
 ![cc_http](https://noonafter.cn/assets/images/posts/2026-03-17-claude-code-mechanism/cc_http_request.png)
 
-可以发现，Claude Code 使用标准的 Anthropic API 格式，主要包含三个核心部分：
+一级结构如下（这里展开了简单的键值）：
 
 ```json
+
 {
-  "model": "doubao-seed-2-0-lite-260215",
-  "messages": [...],
-  "system": [...],
-  "tools": [...]
+    "model": "doubao-seed-2-0-lite-260215", // 具体模型版本
+    "messages": Array[1], // 用户消息和上下文
+    "system": Array[3], // 系统提示词
+    "tools": Array[25], // 可用工具定义
+    "metadata": { // 元数据，用户id
+        "user_id": "user_xxxx_account__session_xxxx"
+    },
+    "max_tokens": 32000, // 最大生成 Token 数
+    "thinking": { // 推理模式开关，token预算等
+        "budget_tokens": 31999,
+        "type": "enabled"
+    },
+    "output_config": { // 计算力度：中等
+        "effort": "medium"
+    },
+    "stream": true // 流式输出
 }
 ```
 
-- **model**: 指定使用的模型
+可以发现，Claude Code 使用标准的 Anthropic API 格式，主要包含三个核心部分：
+
 - **messages**: 用户消息和上下文
 - **system**: 系统提示词（System Prompt）
 - **tools**: 可用工具定义
 
 ### 1.2 缓存机制
 
-Claude Code 使用了 `cache_control` 机制来优化性能：
+在message和system中都可以看到cache_control字段，
 
 ```json
 {
@@ -43,9 +66,11 @@ Claude Code 使用了 `cache_control` 机制来优化性能：
 }
 ```
 
-这种缓存策略可以减少重复内容的传输，提高响应速度。
+这是因为 Claude Code 使用了 `cache_control` 机制来优化性能。这种缓存策略可以减少重复内容的传输，提高响应速度。
 
-## 二、System Prompt 设计哲学
+## 二、System Prompt 设计
+
+这里将系统提示词单独copy下来进行分析，发现其内容非常多并且复杂（1.5w+字符），以下仅抽取一些重要的片段进行分析，感兴趣的大佬可以自行抓取分析。
 
 ### 2.1 身份定位
 
@@ -108,7 +133,7 @@ make all independent tool calls in parallel.
 
 ### 3.1 核心工具清单
 
-从抓包数据中提取的主要工具：
+从抓包数据中可以发现，Claude Code默认提供25个工具（8.5w+字符），其中主要工具包括：
 
 | 工具名称 | 功能描述 | 典型用途 |
 |---------|---------|---------|
@@ -119,8 +144,10 @@ make all independent tool calls in parallel.
 | **Write** | 写入文件 | 创建新文件 |
 | **Glob** | 文件模式匹配 | 查找文件 |
 | **Grep** | 内容搜索 | 搜索代码片段 |
-| **TodoWrite** | 任务管理 | 跟踪进度 |
 | **AskUserQuestion** | 询问用户 | 澄清需求 |
+
+其他工具包括Enter/ExitPlanMode、NotebookEdit、WebFetch/Search、TaskCreate/Stop/Get/Output/Update/List、Skill、Enter/ExitWorktree、CronCreate/Delete/List。这里发现Skill其实也是工具之一，关于详细的tools说明，可以参考我另一篇blog[]()。
+
 
 ### 3.2 Agent 工具：子代理系统
 
@@ -152,7 +179,7 @@ Agent 工具是 Claude Code 的核心创新，支持多种专用子代理：
 }
 ```
 
-**设计亮点**：
+**特点**：
 - **后台执行**：长任务可在后台运行，完成后通知
 - **可恢复**：通过 `resume` 参数继续之前的代理会话
 - **隔离执行**：可在 git worktree 中隔离运行
@@ -297,7 +324,8 @@ DO NOT TRIGGER when: code imports `openai`/other AI SDK
 
 ### 5.4 System Reminder 的类型
 
-从抓包数据中识别出的 System Reminder 类型：
+从抓包数据中可以发现，在message中存在 System Reminder 类型，定位到System Reminder，可以发现其主要用于以下三个方面：
+
 
 1. **Skills 可用性提醒**
 ```xml
@@ -308,7 +336,7 @@ The following skills are available for use with the Skill tool:
 </system-reminder>
 ```
 
-2. **上下文信息提醒**
+1. **上下文信息提醒**
 ```xml
 <system-reminder>
 # currentDate
@@ -317,7 +345,7 @@ IMPORTANT: this context may or may not be relevant to your tasks.
 </system-reminder>
 ```
 
-3. **工具使用提醒**
+1. **工具使用提醒**
 ```xml
 <system-reminder>
 The TodoWrite tool hasn't been used recently.
@@ -590,8 +618,11 @@ System Prompt 包含丰富的环境信息：
 这些信息帮助 AI 生成平台特定的命令。
 
 ### 9.4 流式响应机制（SSE）
+以下是抓到的LLM模型的HTTP响应：
 
-Claude Code 使用 Server-Sent Events (SSE) 实现流式响应：
+![llm_http](https://noonafter.cn/assets/images/posts/2026-03-17-claude-code-mechanism/llm_http_response.png)
+
+可以发现，Claude Code 使用 Server-Sent Events (SSE) 实现流式响应：
 
 #### **响应头**
 ```
@@ -651,6 +682,8 @@ Transfer-Encoding: chunked
 - 遵循了 System Prompt 中的角色定位
 - 展示了软件工程任务的专注性
 - Token 使用：输入 20,172 tokens，输出 65 tokens
+
+个人吐槽：一个简单的“你是谁”，用掉了2w+ Tokens。
 
 ## 十、核心发现与总结
 
@@ -721,14 +754,7 @@ Transfer-Encoding: chunked
 3. **性能优化**：缓存机制、并行执行、后台任务
 4. **安全可靠**：最小权限、可逆优先、审计追溯
 
-这些设计理念不仅适用于代码辅助工具，也为构建其他领域的 AI Agent 系统提供了宝贵的参考。
+这些设计理念不仅适用于代码辅助工具，也为构建其他领域的 AI Agent 系统提供了参考。
 
----
 
-**附录：抓包环境说明**
-
-- 工具：Charles Proxy
-- 协议：HTTP（原 HTTPS 双向通信）
-- API：火山引擎 API（doubao-seed-2-0-lite-260215）
-- 数据文件：claude code http.json
 
