@@ -328,6 +328,7 @@ DO NOT TRIGGER when: code imports `openai`/other AI SDK
 
 
 1. **Skills 可用性提醒**
+
 ```xml
 <system-reminder>
 The following skills are available for use with the Skill tool:
@@ -336,7 +337,8 @@ The following skills are available for use with the Skill tool:
 </system-reminder>
 ```
 
-1. **上下文信息提醒**
+2. **上下文信息提醒**
+
 ```xml
 <system-reminder>
 # currentDate
@@ -345,7 +347,8 @@ IMPORTANT: this context may or may not be relevant to your tasks.
 </system-reminder>
 ```
 
-1. **工具使用提醒**
+3. **工具使用提醒**
+
 ```xml
 <system-reminder>
 The TodoWrite tool hasn't been used recently.
