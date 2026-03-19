@@ -1,6 +1,6 @@
 ---
 title: 加密技术与信任的传递
-tags: encryption CA
+tags: encryption
 ---
 
 在互联网时代，我们在网络上发送的每一条微信、输入的每一次密码、进行的每一笔支付，都需要跨越无数的路由器和基站。如何在危机四伏的公共网络“信道”中保护我们的隐私和资产？这就需要用到密码学。
@@ -11,9 +11,11 @@ tags: encryption CA
 
 无论是哪种加密技术，其核心目的都是保护信息在传输过程中的安全。一个完整的密码学通信流程如下：
 
-> **明文 $\rightarrow$ 加密算法 $\rightarrow$ 密文 $\rightarrow$ [不安全的信道] $\rightarrow$ 密文 $\rightarrow$ 解密算法 $\rightarrow$ 明文**
->&emsp;&emsp;&emsp;&emsp;**↑密钥**&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**↑密钥**
+```text
+明文 → 加密算法 → 密文 → [不安全的信道] → 密文 → 解密算法 → 明文
 
+       ↑密钥                                   ↑密钥
+```
 
 在这个流程中，算法通常是公开的，真正保证安全的是**“密钥（Key）”**。根据密钥的使用方式，加密技术分为两大门派：**对称加密**和**非对称加密**。
 
