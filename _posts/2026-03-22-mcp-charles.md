@@ -1,5 +1,5 @@
 ---
-title: Claude Code MCP 插件踩坑与底层抓包全过程分析
+title: MCP 插件安装踩坑与底层抓包全过程分析
 tags: llm mcp agent
 ---
 
@@ -85,7 +85,9 @@ Claude Code配置如下：
   "model": "opus"
 }
 ```
+**对话截图**
 
+![cc_session](https://noonafter.cn/assets/images/posts/2026-03-22-mcp-charles/cc_session.png)
 ### 第一次交互：模型决定调用工具
 
 **请求 (Request):**
