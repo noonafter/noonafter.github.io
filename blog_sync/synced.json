@@ -39,5 +39,9 @@
   "2024-05-11-encryption-ca.md": "19737674",
   "2024-05-12-encryption-http-ssl.md": "19737675",
   "2024-05-14-encryption-charles.md": "19737676",
-  "2026-03-22-mcp-charles.md": "19755750"
+  "2026-03-22-mcp-charles.md": "19755750",
+  "2023-10-20-python import.md": "19783334",
+  "2026-03-27-claude-code-mcp-hook-pitfalls.md": "19783336",
+  "2026-03-27-cppcheck-mcp-wrapper.md": "19783337",
+  "2026-03-27-cppcheck-static-analysis-guide.md": "19783338"
 }
