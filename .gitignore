@@ -30,3 +30,7 @@ _site/
 blog_sync/config.json
 blog_sync/csdn_cookies.json
 blog_sync/__pycache__/
+
+draft/*
+
+.claude/*
