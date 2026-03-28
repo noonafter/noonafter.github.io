@@ -1,9 +1,8 @@
 ---
 layout: article
 title: 基于 MCP 的 C++ 静态分析工具封装实践
-date: 2026-03-27 16:00:00 +0800
+date: 2026-03-25 16:00:00 +0800
 tags: agent mcp cppcheck 
-excerpt: 通过 Model Context Protocol 封装 cppcheck 静态分析工具，实现项目感知、输出优化和 AI Agent 无缝集成
 ---
 
 ## 问题背景
