@@ -41,4 +41,4 @@
   start_date: 2025.9.1
   finish_date: 2026.3.6
   douban_link: https://book.douban.com/subject/26912767/
-  note: 一句话评价：计算机系统入门的最强书籍，没有之一！从二进制、汇编讲起，将整个计算机中最核心的东西串联到了一起，CPU，内存，链接装载，进程，虚拟内存，系统IO，网络，读书的过程不仅是一种学习，更是一种审美！从未如此深刻地体验到计算机设计的哲学和美感！另外，课后的Lab设计也非常精妙，完成的过程会有点曲折，但一点点啃完后，有巨大的成就感！这里放上[个人Lab答案](https://github.com/noonafter/csapp_labs)仅供参考
+  note: 一句话评价：计算机系统入门的最强书籍，没有之一！全书将整个计算机中最核心的东西串联到了一起，形成一个整体，读书的过程不仅是一种学习，更是一种审美！课后的Lab设计也非常精妙，这里放上<a href="https://github.com/noonafter/csapp_labs" target="_blank">个人Lab答案</a>仅供参考
