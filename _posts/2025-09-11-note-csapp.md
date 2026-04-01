@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 【读书笔记】CSAPP前八章内容回顾
-date: 2025-12-11 09:16:28 +0800
+date: 2025-09-11 09:16:28 +0800
 tags: book csapp
 ---
 
