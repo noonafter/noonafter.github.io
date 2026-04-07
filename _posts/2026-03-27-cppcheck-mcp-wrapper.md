@@ -2,7 +2,10 @@
 layout: article
 title: 基于 MCP 的 C++ 静态分析工具封装实践
 date: 2026-03-25 16:00:00 +0800
-tags: agent mcp cppcheck 
+tags:
+  - agent
+  - mcp
+  - cppcheck
 ---
 
 ## 问题背景

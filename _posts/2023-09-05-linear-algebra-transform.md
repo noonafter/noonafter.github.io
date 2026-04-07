@@ -1,6 +1,8 @@
 ---
 title: 【读书笔记】Introduction to Linear Algebra | 第 8 章：线性变换 
-tags: linear_algebra book
+tags:
+  - linear_algebra
+  - book
 ---
 
 

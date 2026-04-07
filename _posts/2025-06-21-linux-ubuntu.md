@@ -1,6 +1,8 @@
 ---
 title: Ubuntu双系统安装与使用
-tags: linux ubuntu
+tags:
+  - linux
+  - ubuntu
 ---
 
 ## Windows平台下Ubuntu双系统的安装

@@ -1,8 +1,10 @@
 ---
 title: 【读书笔记】Introduction to Linear Algebra | 第 6 章：特征值与特征向量
-tags: linear_algebra book
+tags:
+  - linear_algebra
+  - book
 ---
-
+        
 
 本章进入线性代数的核心内容，探讨特征值与特征向量的性质、矩阵对角化、微分方程组应用以及对称矩阵与正定矩阵的特性。
 

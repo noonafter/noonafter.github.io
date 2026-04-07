@@ -1,6 +1,8 @@
 ---
 title: Clion调试无源码程序
-tags: clion debug
+tags:
+  - clion
+  - debug
 ---
 
 

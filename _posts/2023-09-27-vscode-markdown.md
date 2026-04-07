@@ -1,6 +1,8 @@
 ---
 title: VSCode编写Markdown
-tags: vscode markdown
+tags:
+  - vscode
+  - markdown
 ---
 
 

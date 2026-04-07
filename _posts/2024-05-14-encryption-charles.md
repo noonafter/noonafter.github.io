@@ -1,6 +1,9 @@
 ---
 title: Charles抓包原理
-tags: encryption https charles
+tags:
+  - encryption
+  - https
+  - charles
 ---
 
 基于前文对 [HTTP、SSL/TLS 握手流程、数字证书以及信任链的详细解析](https://noonafter.cn/2024/05/12/encryption-http-ssl.html)，我们现在可以非常清晰地理解 **Charles** 这类抓包工具的工作原理及其局限性。

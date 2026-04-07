@@ -1,6 +1,8 @@
 ---
 title: 虚拟地址空间分类与处理
-tags: memory os
+tags:
+  - memory
+  - os
 ---
 
 

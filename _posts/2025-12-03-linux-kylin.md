@@ -1,6 +1,8 @@
 ---
 title: 银河麒麟v10本地源搭建
-tags: linux kylin
+tags:
+  - linux
+  - kylin
 ---
 
 

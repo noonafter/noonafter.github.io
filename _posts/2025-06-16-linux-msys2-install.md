@@ -1,6 +1,8 @@
 ---
 title: MSYS2安装和使用
-tags: linux msys2
+tags:
+  - linux
+  - msys2
 ---
 
 

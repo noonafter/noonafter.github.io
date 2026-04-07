@@ -34,3 +34,6 @@ blog_sync/__pycache__/
 draft/*
 
 .claude/*
+
+_posts/.obsidian/
+scripts/convert-tags.py

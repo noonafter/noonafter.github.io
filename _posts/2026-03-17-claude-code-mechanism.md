@@ -1,6 +1,9 @@
 ---
 title: Claude Code 工作机制深度解析：基于抓包数据逆向分析
-tags: llm agent skills
+tags:
+  - llm
+  - agent
+  - skills
 ---
 
 本文通过对 Claude Code 进行 HTTP 抓包，分析并探讨其底层工作机制，包括 System Prompt 设计、Tools 架构、Skills 系统以及渐进式披露（Progressive Disclosure）策略。

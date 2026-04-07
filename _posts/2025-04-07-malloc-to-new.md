@@ -2,7 +2,9 @@
 layout: article
 title: 从 malloc 到 new：C++ 堆内存管理的演进
 date: 2025-04-07 9:00:00 +0800
-tags: c/c++ memory
+tags:
+  - c/c++
+  - memory
 ---
 
 

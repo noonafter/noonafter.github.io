@@ -1,6 +1,8 @@
 ---
 title: 【Qt源码分析】QThread
-tags: qt thread
+tags:
+  - qt
+  - thread
 ---
 
 

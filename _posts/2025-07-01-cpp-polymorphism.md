@@ -2,7 +2,10 @@
 layout: article
 title: C++ 多态机制
 date: 2025-07-01 10:00:00 +0800
-tags: c/c++ polymorphism vtable
+tags:
+  - c/c++
+  - polymorphism
+  - vtable
 ---
 
 

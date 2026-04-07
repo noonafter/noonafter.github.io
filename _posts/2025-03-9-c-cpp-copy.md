@@ -1,6 +1,8 @@
 ---
 title: C++深浅拷贝机制
-tags: c/c++ copy
+tags:
+  - c/c++
+  - copy
 ---
 
 

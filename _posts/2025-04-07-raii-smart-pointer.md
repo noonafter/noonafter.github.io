@@ -2,7 +2,10 @@
 layout: article
 title: RAII 与智能指针的内部机制
 date: 2025-04-07 10:00:00 +0800
-tags: c/c++ memory raii
+tags:
+  - c/c++
+  - memory
+  - raii
 ---
 
 
