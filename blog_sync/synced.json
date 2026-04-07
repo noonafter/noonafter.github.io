@@ -43,5 +43,8 @@
   "2023-10-20-python import.md": "19783334",
   "2026-03-27-claude-code-mcp-hook-pitfalls.md": "19783336",
   "2026-03-27-cppcheck-mcp-wrapper.md": "19783337",
-  "2026-03-27-cppcheck-static-analysis-guide.md": "19783338"
+  "2026-03-27-cppcheck-static-analysis-guide.md": "19783338",
+  "2025-07-01-cpp-polymorphism.md": "19806611",
+  "2025-09-11-note-csapp.md": "19806612",
+  "2026-03-31-call-by-value-reference-assembly.md": "19806613"
 }
