@@ -3,11 +3,11 @@ title: 加密技术的网络应用：HTTPS和SSH
 tags:
   - encryption
   - https 
-  - ssl/tls 
+  - ssl-tls 
   - ssh
 ---
 
-基于前文建立的[密码学基础概念](https://noonafter.cn/2024/05/11/encryption-ca.html)（对称加密、非对称加密、数字签名、数字证书），我们可以清晰地解析在实际网络通信中，HTTP、SSL/TLS、HTTPS以及SSH这些协议是如何运作和相互关联的。以下是对这些协议的逻辑梳理与流程说明。
+基于前文建立的[密码学基础概念](./2024-05-11-encryption-ca.md)（对称加密、非对称加密、数字签名、数字证书），我们可以清晰地解析在实际网络通信中，HTTP、SSL/TLS、HTTPS以及SSH这些协议是如何运作和相互关联的。以下是对这些协议的逻辑梳理与流程说明。
 
 
 ## 一、 HTTP：明文传输协议及其安全隐患

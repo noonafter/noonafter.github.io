@@ -3,7 +3,7 @@ layout: article
 title: C++ 多态机制
 date: 2025-07-01 10:00:00 +0800
 tags:
-  - c/c++
+  - cpp
   - polymorphism
   - vtable
 ---
@@ -58,7 +58,7 @@ tags:
 2. 每个对象实例包含一个隐藏指针 `vptr`，指向所属类的虚函数表
 3. 运行时通过 `vptr` 查找 VTable，进而跳转到实际需要执行的函数地址
 
-具体原理可以参考另一篇文章[虚函数与虚表：汇编视角](https://noonafter.cn/2025/07/24/vptr-vtable.html)
+具体原理可以参考另一篇文章[虚函数与虚表：汇编视角](./2025-07-24-vptr-vtable.md)
 
 ## 其他分类方式
 

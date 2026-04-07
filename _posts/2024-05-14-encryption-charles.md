@@ -6,7 +6,7 @@ tags:
   - charles
 ---
 
-基于前文对 [HTTP、SSL/TLS 握手流程、数字证书以及信任链的详细解析](https://noonafter.cn/2024/05/12/encryption-http-ssl.html)，我们现在可以非常清晰地理解 **Charles** 这类抓包工具的工作原理及其局限性。
+基于前文对 [HTTP、SSL/TLS 握手流程、数字证书以及信任链的详细解析](./2024-05-12-encryption-http-ssl.md)，我们现在可以非常清晰地理解 **Charles** 这类抓包工具的工作原理及其局限性。
 
 Charles 是一款应用层的网络代理（Proxy）工具。当设备（如手机或电脑浏览器）将其设置为网络代理后，设备所有的 HTTP/HTTPS 网络请求都会先经过 Charles，再由 Charles 转发给目标服务器。
 
