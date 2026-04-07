@@ -5,8 +5,6 @@ tags:
   - qcustomplot
 ---
 
-# QCPColorMap绘制瀑布图卡顿原因及解决方案
-
 
 ## 目录
 1. [绘图原理解析](#一绘图原理解析)
