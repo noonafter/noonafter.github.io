@@ -170,7 +170,7 @@ C++ 中，对象、引用、函数、表达式都有“**类型**”这个属性
 
 **基础类型（fundamental）**：
 - 算术类型：`int`、`float`、`char`、`bool`
-- 特殊类型：`void`、`nullptr_t`
+- 特殊类型：`void`、[`nullptr_t`](./2024-04-03-cpp-nullptr.md)
 - 特点：语言的原子类型，不依赖其他类型
 
 **复合类型（compound）**：
