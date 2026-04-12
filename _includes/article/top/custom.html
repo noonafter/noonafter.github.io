@@ -1,11 +1,14 @@
 <!-- start custom article top snippet -->
+<span id="busuanzi_container_page_pv" style="position:absolute;visibility:hidden;">
+  <span id="busuanzi_value_page_pv"></span>
+</span>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
   var _bszTimer = setInterval(function() {
     var bsz = document.getElementById('busuanzi_value_page_pv');
-    if (bsz && bsz.innerText) {
+    if (bsz && bsz.innerHTML) {
       var el = document.querySelector('.js-pageview');
-      if (el) el.innerText = bsz.innerText;
+      if (el) el.innerText = bsz.innerHTML;
       clearInterval(_bszTimer);
     }
   }, 300);
