@@ -39,21 +39,5 @@ articles:
 <script>
   {%- include scripts/home.js -%}
 </script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var els = document.querySelectorAll('.js-pageview[data-page-key]');
-    if (!els.length) return;
-    var paths = Array.from(els).map(function(el){ return el.dataset.pageKey; }).filter(Boolean);
-    fetch('https://waline-server-nine-murex.vercel.app/api/article?path=' + paths.map(encodeURIComponent).join(','))
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if (!d.data) return;
-        d.data.forEach(function(item){
-          var el = document.querySelector('.js-pageview[data-page-key="' + item.url + '"]');
-          if (el) el.innerText = item.time || 0;
-        });
-      });
-  });
-</script>
 
 {{ content }}
