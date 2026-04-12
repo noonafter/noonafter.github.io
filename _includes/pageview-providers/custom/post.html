@@ -1,3 +1,15 @@
 <!-- start custom pageview snippet (for the post) -->
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  window.addEventListener('load', function() {
+    var timer = setInterval(function() {
+      var bsz = document.getElementById('busuanzi_value_page_pv');
+      if (bsz && bsz.innerText) {
+        var el = document.querySelector('.js-pageview');
+        if (el) el.innerText = bsz.innerText;
+        clearInterval(timer);
+      }
+    }, 300);
+  });
+</script>
 <!-- end custom pageview snippet (for the post) -->
