@@ -27,7 +27,7 @@
   {%- include snippets/assign.html target=site.data.variables.default.page.pageview
     source0=layout.pageview source1=page.pageview -%}
   {%- assign _pageview = __return -%}
-  {%- if _pageview or include.show_pageview -%}
+  {%- if (_pageview or include.show_pageview) and page.layout != 'home' -%}
     {%- assign _pageview = true -%}
   {%- else -%}
     {%- assign _pageview = false -%}
