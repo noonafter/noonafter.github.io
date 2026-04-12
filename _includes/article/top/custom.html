@@ -1,3 +1,13 @@
 <!-- start custom article top snippet -->
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  var _bszTimer = setInterval(function() {
+    var bsz = document.getElementById('busuanzi_value_page_pv');
+    if (bsz && bsz.innerText) {
+      var el = document.querySelector('.js-pageview');
+      if (el) el.innerText = bsz.innerText;
+      clearInterval(_bszTimer);
+    }
+  }, 300);
+</script>
 <!-- end custom article top snippet -->
