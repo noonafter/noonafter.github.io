@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Git 本地操作
+title: Git 本地操作原理
 date: 2023-04-12 10:00:00 +0800
 tags:
   - git
@@ -23,7 +23,6 @@ A ← B ← M        # M 是 merge commit，有两个 parent
     D ←
 ```
 
----
 
 ## 二、指针系统：branch 与 HEAD
 
@@ -66,7 +65,6 @@ Git 本地维护三个层次：
 
 数据流向：工作区 `git add` → 暂存区 `git commit` → 仓库。
 
----
 
 ## 四、指针移动操作
 
@@ -127,7 +125,6 @@ git revert abc123         # 生成新 commit 抵消 abc123 的变更（已推送
 
 `reset` 重写历史，若已推送则会与远端产生分歧，需要 force push，会影响其他协作者。`revert` 不重写历史，是协作场景下的安全选择。
 
----
 
 ## 六、commit 复制操作
 
