@@ -118,7 +118,7 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: valine # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: custom # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
   disqus:
@@ -133,6 +133,10 @@ comments:
     owner       : noonafter # GitHub repo owner
     admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
       - noonafter # - your GitHub Id
+
+  ## Waline
+  waline:
+    server_url: https://waline-server-nine-murex.vercel.app
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
