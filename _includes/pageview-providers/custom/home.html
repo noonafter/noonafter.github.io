@@ -1,3 +1,20 @@
 <!-- start custom pageview snippet (for Home layout) -->
-
+<script>
+  (function() {
+    var serverURL = '{{ site.comments.waline.server_url }}';
+    var els = Array.from(document.querySelectorAll('.js-pageview[data-page-key]'));
+    if (!els.length) return;
+    var paths = els.map(function(el) {
+      return encodeURIComponent(el.getAttribute('data-page-key'));
+    }).join(',');
+    fetch(serverURL + '/api/article?path=' + paths)
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (!res.data) return;
+        res.data.forEach(function(item, i) {
+          if (els[i]) els[i].textContent = item.time;
+        });
+      });
+  })();
+</script>
 <!-- end custom pageview snippet (for Home layout) -->

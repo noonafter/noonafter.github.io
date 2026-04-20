@@ -27,7 +27,7 @@
   {%- include snippets/assign.html target=site.data.variables.default.page.pageview
     source0=layout.pageview source1=page.pageview -%}
   {%- assign _pageview = __return -%}
-  {%- if (_pageview or include.show_pageview) and page.layout != 'home' -%}
+  {%- if (_pageview or include.show_pageview) -%}
     {%- assign _pageview = true -%}
   {%- else -%}
     {%- assign _pageview = false -%}
@@ -71,7 +71,7 @@
             {%- if site.pageview.provider -%}
               {%- include snippets/get-locale-string.html key='VIEWS' -%}
               {%- assign _locale_views = __return -%}
-              <li><i class="far fa-eye"></i> <span class="js-pageview" data-page-key="{{ include.article.key }}">0</span> {{ _locale_views }}</li>
+              <li><i class="far fa-eye"></i> <span class="js-pageview" data-page-key="{{ include.article.url }}">0</span> {{ _locale_views }}</li>
             {%- endif -%}
           {%- endif -%}
         </ul>
