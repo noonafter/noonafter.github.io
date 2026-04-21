@@ -4,7 +4,6 @@ title: BLOG搭建笔记之六：评论系统与Pageview迁移
 date: 2025-04-21 10:50:56 +0800
 tags:
   - blog
-render_with_liquid: false
 ---
 
 
@@ -151,7 +150,7 @@ comments:
   import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
   init({
     el: '#waline',
-    serverURL: '{{ site.comments.waline.server_url }}',
+    serverURL: '{% raw %}{{ site.comments.waline.server_url }}{% endraw %}',
   });
 </script>
 ```
@@ -161,7 +160,7 @@ comments:
 `_includes/comments.html` 默认包含环境检查：
 
 ```liquid
-{%- if jekyll.environment != 'development' -%}
+{% raw %}{%- if jekyll.environment != 'development' -%}{% endraw %}
 ```
 
 该条件导致 `jekyll serve` 时评论区不渲染。删除此条件后开发环境可正常显示。
@@ -180,7 +179,7 @@ comments:
 <!-- start custom article top snippet -->
 <script>
   (function() {
-    var serverURL = '{{ site.comments.waline.server_url }}';
+    var serverURL = '{% raw %}{{ site.comments.waline.server_url }}{% endraw %}';
     var path = window.location.pathname;
     fetch(serverURL + '/api/article', {
       method: 'POST',
@@ -203,8 +202,8 @@ comments:
 `_includes/article-info.html` 中 `.js-pageview` 元素原来的 `data-page-key` 存储的是文章 `key`（如 `2025-01-19-github-pages-comment`），而 Waline 存储和查询使用的是 URL 路径（如 `/2025/01/19/github-pages-comment.html`）。需将其改为 `include.article.url`：
 
 ```diff
-- <span class="js-pageview" data-page-key="{{ include.article.key }}">0</span>
-+ <span class="js-pageview" data-page-key="{{ include.article.url }}">0</span>
+- <span class="js-pageview" data-page-key="{% raw %}{{ include.article.key }}{% endraw %}">0</span>
++ <span class="js-pageview" data-page-key="{% raw %}{{ include.article.url }}{% endraw %}">0</span>
 ```
 
 ### 3. 首页批量查询
@@ -215,7 +214,7 @@ comments:
 <!-- start custom pageview snippet (for Home layout) -->
 <script>
   (function() {
-    var serverURL = '{{ site.comments.waline.server_url }}';
+    var serverURL = '{% raw %}{{ site.comments.waline.server_url }}{% endraw %}';
     var els = Array.from(document.querySelectorAll('.js-pageview[data-page-key]'));
     if (!els.length) return;
     var paths = els.map(function(el) {
