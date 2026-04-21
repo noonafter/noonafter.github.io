@@ -4,6 +4,7 @@ title: BLOG搭建笔记之六：评论系统与Pageview迁移
 date: 2025-04-21 10:50:56 +0800
 tags:
   - blog
+excerpt: 将评论系统从 Valine/LeanCloud 迁移至 Waline，并将阅读量统计从 busuanzi 迁移至 Waline，使用 Neon PostgreSQL 作为数据存储。
 ---
 
 
