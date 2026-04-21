@@ -134,9 +134,9 @@ comments:
     admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
       - noonafter # - your GitHub Id
 
-  ## Waline
+  ## Waline https://waline-server-nine-murex.vercel.app
   waline:
-    server_url: https://waline-server-nine-murex.vercel.app
+    server_url: https://comment.noonafter.cn
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
