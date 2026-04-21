@@ -4,6 +4,7 @@ title: BLOG搭建笔记之六：评论系统与Pageview迁移
 date: 2025-04-21 10:50:56 +0800
 tags:
   - blog
+render_with_liquid: false
 ---
 
 
@@ -306,7 +307,6 @@ ALTER TABLE wl_users ADD COLUMN IF NOT EXISTS oidc varchar(255) DEFAULT NULL;
 ALTER TABLE wl_users ADD COLUMN IF NOT EXISTS huawei varchar(255) DEFAULT NULL;
 ALTER TABLE wl_users ADD COLUMN IF NOT EXISTS "2fa" varchar(32) DEFAULT NULL;
 ```
-
 
 
 ## 七、数据管理

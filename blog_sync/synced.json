@@ -46,5 +46,20 @@
   "2026-03-27-cppcheck-static-analysis-guide.md": "19783338",
   "2025-07-01-cpp-polymorphism.md": "19806611",
   "2025-09-11-note-csapp.md": "19806612",
-  "2026-03-31-call-by-value-reference-assembly.md": "19806613"
+  "2026-03-31-call-by-value-reference-assembly.md": "19806613",
+  "2023-04-12-git-local-operations.md": "19899599",
+  "2023-04-13-git-remote-operations.md": "19899600",
+  "2024-04-03-cpp-nullptr.md": "19899601",
+  "2024-04-10-cpp-initialization-assignment.md": "19899603",
+  "2024-04-10-cpp-initialization-types.md": "19899604",
+  "2024-04-14-cpp-value-categories.md": "19899605",
+  "2024-04-16-cpp-initialization-semantics.md": "19899606",
+  "2024-06-09-const-constexpr.md": "19899607",
+  "2025-03-09-c-cpp-copy.md": "19899609",
+  "2025-04-07-cpp-memory-model.md": "19899610",
+  "2025-04-07-malloc-to-new.md": "19899611",
+  "2025-04-07-raii-smart-pointer.md": "19899613",
+  "2025-04-19-serial-port-communication.md": "19899614",
+  "2025-04-21-github-pages-migration.md": "19899615",
+  "2026-03-11-ai-singularity-speculation.md": "19899618"
 }
