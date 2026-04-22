@@ -1,7 +1,7 @@
 ---
 title: 【读书笔记】Introduction to Linear Algebra | 第 6 章：特征值与特征向量
 tags:
-  - linear_algebra
+  - math
   - book
 ---
         

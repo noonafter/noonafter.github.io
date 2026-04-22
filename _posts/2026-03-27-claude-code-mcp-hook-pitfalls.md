@@ -3,9 +3,10 @@ layout: article
 title: Claude Code Hooks 开发踩坑记录
 date: 2026-03-26 22:00:00 +0800
 tags:
-  - agent
+  - agents
   - mcp
   - hook
+  - llm
 ---
 
 

@@ -3,8 +3,7 @@ layout: article
 title: C++ 初始化详解
 date: 2024-04-16 16:59:07 +0800
 tags:
-  - cpp
-  - init
+  - cpp/basic
 ---
 
 

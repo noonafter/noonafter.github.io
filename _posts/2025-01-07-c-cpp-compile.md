@@ -1,7 +1,8 @@
 ---
 title: C/C++编译过程基础
 tags:
-  - cpp
+  - cpp/basic
+  - link
   - compile
 ---
 

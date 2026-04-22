@@ -3,7 +3,7 @@ title: MCP 插件配置踩坑与底层抓包全过程分析
 tags:
   - llm
   - mcp
-  - agent
+  - agents
 ---
 
 

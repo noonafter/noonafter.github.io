@@ -3,7 +3,7 @@ layout: article
 title: C++ 内存模型：栈与堆的本质
 date: 2025-04-07 8:00:00 +0800
 tags:
-  - cpp
+  - cpp/basic
   - memory
 ---
 

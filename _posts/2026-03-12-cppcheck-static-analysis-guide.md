@@ -1,12 +1,11 @@
 ---
 layout: article
 title: Cppcheck 静态分析工具简介
-date: 2026-03-11 10:00:00 +0800
+date: 2026-03-12 10:00:00 +0800
 tags:
   - cppcheck
   - static-analysis
-  - cpp
-  - code-quality
+  - cpp/test
 ---
 
 

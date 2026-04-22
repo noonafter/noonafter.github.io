@@ -2,7 +2,7 @@
 title: Claude Code 工作机制深度解析：基于抓包数据逆向分析
 tags:
   - llm
-  - agent
+  - agents
   - skills
 ---
 

@@ -3,7 +3,7 @@ layout: article
 title: 奇点倒计时：从幻觉机器到戴森球文明的技术推演
 date: 2026-03-11 10:00:00 +0800
 tags:
-  - ai
+  - llm
   - sci-fi
 ---
 

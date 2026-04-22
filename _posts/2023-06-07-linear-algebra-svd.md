@@ -1,7 +1,7 @@
 ---
 title: 【读书笔记】Introduction to Linear Algebra | 第 7 章：奇异值分解 (SVD)
 tags:
-  - linear_algebra
+  - math
   - book
 ---
 

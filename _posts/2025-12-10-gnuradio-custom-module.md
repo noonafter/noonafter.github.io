@@ -1,6 +1,8 @@
 ---
 title: GNURadio框架自定义C++模块开发
-tags: gnuradio
+tags:
+- gnuradio
+- cpp/dev
 ---
 
 

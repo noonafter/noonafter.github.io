@@ -3,8 +3,7 @@ layout: article
 title: nullptr：类型安全的空指针常量
 date: 2024-04-03 10:00:00 +0800
 tags:
-  - cpp
-  - nullptr
+  - cpp/basic
 ---
 
 

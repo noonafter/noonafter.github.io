@@ -1,7 +1,7 @@
 ---
 title: 【读书笔记】Introduction to Linear Algebra | 第 5 章：行列式
 tags:
-  - linear_algebra
+  - math
   - book
 ---
 

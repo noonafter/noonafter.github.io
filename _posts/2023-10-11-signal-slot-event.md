@@ -2,8 +2,7 @@
 title: Qt信号槽与事件循环
 tags:
   - qt
-  - signal_slot
-  - event_loop
+  - cpp/dev
 ---
 - [事件与事件循环](#事件与事件循环)
   - [事件的分类](#事件的分类)

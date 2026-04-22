@@ -1,8 +1,8 @@
 ---
 title: 虚函数与虚表：汇编视角
 tags:
-  - vptr
-  - cpp
+  - vtable
+  - cpp/oop
   - asm
 ---
 
