@@ -78,7 +78,7 @@ SSH 的完整通信逻辑分为两个独立阶段：**安全隧道建立阶段**
 
 ### 阶段一：建立安全隧道（服务器身份验证与密钥交换）
 
-在 Alice 真正输入密码或提供私钥之前，SSH 必须先建立一个加密的网络隧道，以防后续的认证信息被截获。
+在 Alice 进行用户身份认证之前，SSH 必须先建立一个加密的网络隧道，以防后续的认证信息被截获。
 
 1.  **服务器出示公钥**：Alice 在终端输入 `ssh user@server_ip`。服务器收到请求后，将自己的\*\*主机公钥（Host Public Key）\*\*明文发送给 Alice。
 2.  **TOFU（首次使用信任）逻辑**：与 HTTPS 依赖 CA 证书不同，SSH 采用去中心化的 **TOFU (Trust On First Use)** 机制。
@@ -93,11 +93,11 @@ SSH 的完整通信逻辑分为两个独立阶段：**安全隧道建立阶段**
 
 隧道建立后，服务器需要确认：“坐在电脑前的这个人，真的是拥有管理员权限的 Alice 吗？” SSH 最推荐、最安全的认证方式是**基于密钥的认证（Public-Key Authentication）**。其核心逻辑依赖于前文提到的**数字签名**技术。
 
-**前提准备：** Alice 已经在本地生成了一对密钥（**客户端公钥 PaliceP\_{alice}Palice​** 和 **客户端私钥 SaliceS\_{alice}Salice​**），并且已经提前将 PaliceP\_{alice}Palice​ 文本复制到了 Linux 服务器的 `~/.ssh/authorized_keys` 文件中。SaliceS\_{alice}Salice​ 严格保存在 Alice 本地电脑。
+**前提准备：** Alice 已经在本地生成了一对密钥（**客户端公钥 `P_alice`** 和 **客户端私钥 `S_alice`**）。在此之前，Alice 通过 `ssh-copy-id` 命令，或在拥有密码登录权限时手动将 `P_alice` 的内容追加到 Linux 服务器的 `~/.ssh/authorized_keys` 文件中。`S_alice` 严格保存在 Alice 本地电脑，从不传输。
 
 **认证处理逻辑流程：**
 
-1.  **客户端发起认证请求**：Alice 的 SSH 客户端向服务器发送一条消息：“我请求使用名为 PaliceP\_{alice}Palice​ 的公钥进行身份验证。”
+1.  **客户端发起认证请求**：Alice 的 SSH 客户端向服务器发送一条消息：”我请求使用名为 `P_alice` 的公钥进行身份验证。”
 2.  **服务器检查授权与发起质询（Challenge）**：
 
     *   服务器在 `authorized_keys` 文件中找到了 PaliceP\_{alice}Palice​，确认该用户具备访问权限。
