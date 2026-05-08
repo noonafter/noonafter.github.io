@@ -42,3 +42,10 @@
   finish_date: 2025.12.6
   douban_link: https://book.douban.com/subject/26912767/
   note: 一句话评价：计算机系统入门的最强书籍，没有之一！全书将整个计算机中最核心的东西串联到了一起，形成一个整体，读书的过程不仅是一种学习，更是一种审美！课后的Lab设计也非常精妙，这里放上<a href="https://github.com/noonafter/csapp_labs" target="_blank">个人Lab答案</a>仅供参考
+
+- name: C++ Primer
+  cover: https://noonafter.cn/assets/images/books/s27023182.jpg
+  start_date: 2024.7.1
+  finish_date: 2025.5.8
+  douban_link: https://book.douban.com/subject/25708312/
+  note: C++11入门的经典教材，内容全面，其中明确并补充了很多C中模糊或者缺失的概念，基础内容必须仔细阅读，包括表达式、函数、类、容器、模版等章节。但是部分细节过于繁琐且使用频率不高，建议选择性阅读，碰到问题时再来查阅。
