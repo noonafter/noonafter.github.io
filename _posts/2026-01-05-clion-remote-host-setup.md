@@ -72,15 +72,35 @@ ssh ftd2000@192.168.137.x
 qmake --version
 ```
 
-本机系统默认版本为 Qt 5.12.12。若对 Qt 版本无特定要求，可直接使用系统包管理器安装：
+本机系统默认版本为 Qt 5.12.12。
+
+**版本选择建议**：
+
+| 场景 | 推荐方案 | 说明 |
+|---|---|---|
+| 对版本无要求 | 系统包管理器安装 | 最简单，兼容性最好 |
+| 需要指定版本 | 源码编译，版本 ≤ 5.14.2 | 5.14.2 是最后一个官方提供安装包的版本（无 ARM64 版） |
+| 必须使用 5.15.x | 源码编译 | 可能遇到编译问题，见下文说明 |
+
+若对 Qt 版本无特定要求，直接使用系统包管理器安装：
 
 ```bash
 sudo apt install qt5-default qtbase5-dev qtdeclarative5-dev qtquickcontrols2-5-dev qml-module-qtquick2 qml-module-qtquick-controls2 build-essential
 ```
 
-本文选择从源码编译安装的原因是：项目需要使用指定的 Qt 5.15.17 版本以保持团队开发环境一致，而 Qt 官方未提供 ARM64 架构的离线安装包。Qt 官方的在线安装器理论上也支持 ARM64 平台，但需要 Qt 账号登录且网络稳定性要求较高，源码编译方式更可控。
+**关于 Qt 5.15 在 ARM64 上的编译问题**：Qt 5.15 系列对底层 JavaScript 引擎（V4）和正则表达式引擎（Yarr）进行了激进的性能优化，导致在某些平台上出现链接错误，典型报错：
 
-在 ARM64 平台上编译 Qt 5.15 分三个阶段：
+```
+YarrPattern.cpp:(.text+0x9e0): undefined reference to `JSC::Yarr::newlineCreate()'
+YarrPattern.cpp:(.text+0xa74): undefined reference to `JSC::Yarr::digitsCreate()'
+YarrPattern.cpp:(.text+0xaf4): undefined reference to `JSC::Yarr::spacesCreate()'
+```
+
+这是 Qt 5.15.0 - 5.15.8 期间的已知问题，符号可见性规则在这些版本中变得极其复杂。Qt 5.14.2 的实现方式不同，编译更加稳定。因此若项目允许，建议选择 5.14.2 或更早版本。
+
+本文以 5.14.2 为例进行说明（项目需要该版本以保持团队开发环境一致），Qt 官方未提供 ARM64 架构的离线安装包，在线安装器理论上支持 ARM64 但需要账号登录且网络稳定性要求较高，源码编译方式更可控。
+
+在 ARM64 平台上编译 Qt 分三个阶段：
 ```bash
 ./configure [选项]  →  make -j<N>  →  make install
 ```
@@ -89,9 +109,9 @@ sudo apt install qt5-default qtbase5-dev qtdeclarative5-dev qtquickcontrols2-5-d
 
 ```bash
 # 从 Qt 官方镜像下载，约 500MB
-wget https://download.qt.io/official_releases/qt/5.15/5.15.17/single/qt-everywhere-opensource-src-5.15.17.tar.xz
-tar xf qt-everywhere-opensource-src-5.15.17.tar.xz
-cd qt-everywhere-src-5.15.17
+wget https://download.qt.io/official_releases/qt/5.14/5.14.2/single/qt-everywhere-opensource-src-5.14.2.tar.xz
+tar xf qt-everywhere-opensource-src-5.14.2.tar.xz
+cd qt-everywhere-src-5.14.2
 ```
 
 ### 安装编译依赖
@@ -106,7 +126,7 @@ sudo apt install build-essential libgl1-mesa-dev libfontconfig1-dev libfreetype6
 
 ```bash
 ./configure \
-  -prefix /opt/Qt5.15.17 \
+  -prefix /opt/Qt5.14.2 \
   -opensource -confirm-license \
   -nomake examples \
   -nomake tests
@@ -144,7 +164,7 @@ sudo make install
 编译安装完成后，可验证 Qt Quick 模块是否正常安装：
 
 ```bash
-find /opt/Qt5.15.17 -name "Qt5Quick*"
+find /opt/Qt5.14.2 -name "Qt5Quick*"
 ```
 
 若有输出则表示 Qt Quick 模块已成功编译。若无输出，说明 configure 阶段因缺少依赖跳过了该模块，需补全依赖后重新编译。
@@ -177,7 +197,7 @@ Settings → Build, Execution, Deployment → **CMake**
 添加一个 CMake Profile，将 Toolchain 指向上一步创建的远程工具链。CMake 选项中添加 Qt 路径：
 
 ```
--DCMAKE_PREFIX_PATH=/opt/Qt5.15.17
+-DCMAKE_PREFIX_PATH=/opt/Qt5.14.2
 ```
 
 ### 4.3 配置 Deployment（文件同步）
