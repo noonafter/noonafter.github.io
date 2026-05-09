@@ -109,8 +109,8 @@ YarrPattern.cpp:(.text+0xaf4): undefined reference to `JSC::Yarr::spacesCreate()
 
 ```bash
 # 从 Qt 官方镜像下载，约 500MB
-wget https://download.qt.io/official_releases/qt/5.14/5.14.2/single/qt-everywhere-opensource-src-5.14.2.tar.xz
-tar xf qt-everywhere-opensource-src-5.14.2.tar.xz
+wget https://download.qt.io/archive/qt/5.14/5.14.2/single/qt-everywhere-src-5.14.2.tar.xz
+tar xf qt-everywhere-src-5.14.2.tar.xz
 cd qt-everywhere-src-5.14.2
 ```
 
@@ -210,6 +210,14 @@ Settings → Build, Execution, Deployment → **Deployment**
 
 首次配置完成后，手动上传一次：Tools → Deployment → **Upload to \<remote\>**。
 
+这一步也可以**使用rsync进行文件同步**：
+
+rsync 是一款Linux系统下的文件同步和传输工具。其核心特点是增量传输，即每次同步时，只传送源端与目标端有差异的部分，而不是每次都发送整个文件，因此效率非常高.
+
+Windows 本身不原生支持 rsync，但通过 [cwRsync](https://softradar.com/cwrsync/) 可以直接使用。cwRsync 是一套打包好的工具，它把 rsync 和它所需的 Cygwin 模拟环境以及 OpenSSH 客户端集成在了一起。
+
+下载cwRsync解压后，在Clion的 Settings -> Tools -> Rsync中填入对应的路径，然后到Settings -> Build, Execution, Deployment -> Deployment中勾选使用rsync进行同步。
+
 ### 4.4 配置 DISPLAY 环境变量
 
 Run/Debug Configurations → 选择目标 → **Environment variables**，添加：
@@ -220,7 +228,7 @@ DISPLAY=<Windows 主机 IP>:0
 
 例如：`DISPLAY=192.168.137.1:0`
 
-这告诉 Qt 程序将窗口渲染到 Windows 上运行的 VcXsrv。
+这告诉 Qt 程序将窗口渲染到 Windows 上运行的 VcXsrv，这一步需要提前完成[第三步](#第-3-步windows-安装-vcxsrv)。
 
 ### 4.5 运行 Demo
 
@@ -298,13 +306,7 @@ sudo setstatus -f exectl on    # 恢复执行控制
 
 此方案需要远程桌面访问，纯 SSH 环境下使用方案一或方案二。
 
-### 使用rsync进行文件同步
 
-rsync 是一款在 Linux/Unix 系统下极为流行的文件同步和传输工具。它的核心特点是增量传输，即每次同步时，只传送源端与目标端有差异的部分，而不是每次都发送整个文件，因此效率非常高.
-
-Windows 本身不原生支持 rsync，但通过 [cwRsync](https://softradar.com/cwrsync/) 可以直接使用。cwRsync 是一套打包好的工具，它把 rsync 和它所需的 Cygwin 模拟环境以及 OpenSSH 客户端集成在了一起。
-
-下载cwRsync解压后，在Clion的 Settings -> Tools -> Rsync中填入对应的路径，然后到Settings -> Build, Execution, Deployment -> Deployment中勾选使用rsync进行同步
 
 ## 参考文章
 
