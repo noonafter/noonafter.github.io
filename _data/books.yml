@@ -49,3 +49,10 @@
   finish_date: 2025.5.8
   douban_link: https://book.douban.com/subject/25708312/
   note: C++11入门的经典教材，内容全面，其中明确并补充了很多C中模糊或者缺失的概念，基础内容必须仔细阅读，包括表达式、函数、类、容器、模版等章节。但是部分细节过于繁琐且使用频率不高，建议选择性阅读，碰到问题时再来查阅。
+
+- name: 数字通信（英文版）
+  cover: https://noonafter.cn/assets/images/books/s6029142.jpg
+  start_date: 2021.10.1
+  finish_date: 
+  douban_link: https://book.douban.com/subject/3777361/
+  note: 数字通信领域的经典教材，特点是架构清晰合理，数学推导详略得当，既能把握精髓，又不过多赘述，对于初学者和有一定基础的读者都非常友好，不得不佩服John Proakis老爷子的写书功力，强烈建议直接阅读英文版。
