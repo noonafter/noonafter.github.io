@@ -4,6 +4,7 @@ title: C++ 初始化与赋值的底层机制
 date: 2024-04-10 10:00:00 +0800
 tags:
   - cpp/basic
+  - cpp/oop
 ---
 
 本文是[C++ 初始化方式与类型分类](./2024-04-10-cpp-initialization-types.md)的续篇，建议先阅读前文了解 C++ 的初始化方式和类型分类。

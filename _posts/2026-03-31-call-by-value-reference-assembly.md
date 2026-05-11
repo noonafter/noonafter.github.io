@@ -4,6 +4,7 @@ title: 值传递与引用传递：汇编视角
 date: 2025-03-31 09:16:28 +0800
 tags:
   - cpp/basic
+  - cpp/oop
   - asm
 ---
 

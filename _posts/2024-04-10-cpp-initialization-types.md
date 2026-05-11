@@ -4,6 +4,7 @@ title: C++ 初始化方式与类型分类
 date: 2024-04-10 10:00:00 +0800
 tags:
   - cpp/basic
+  - cpp/oop
 ---
 
 
