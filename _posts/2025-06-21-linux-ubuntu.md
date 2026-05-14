@@ -17,7 +17,7 @@ tags:
 完成安装后，建议执行下列步骤：
 
 1. [更换国内镜像源](https://www.cnblogs.com/mjsly/articles/18729258)（注意不同版本需要更换对应的codename），否则apt install可能无法正常工作；
-2. [配置中文输入法](https://blog.csdn.net/m0_59457317/article/details/145578223)，调整首选项，词频，打开云输入，配置完成后，系统自带的IBUS输入法就很好用；
+2. [配置中文输入法](https://blog.csdn.net/qq_40060721/article/details/137376847)，推荐使用Fcitx5框架+拼音引擎（fcitx5-chinese-addons），不推荐使用系统自带的IBus输入法，有很多bug;
 3. [设置交换文件](#创建交换文件推荐方案)，防止内存占满，系统卡顿或崩溃；
 4. 修改分辨率，改[壁纸](https://www.bizhihui.com/)。
 
