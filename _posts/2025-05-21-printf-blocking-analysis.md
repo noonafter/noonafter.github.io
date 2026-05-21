@@ -1,7 +1,7 @@
 ---
 layout: article
 title: printf 函数的四分类分析
-date: 2026-05-21 10:00:00 +0800
+date: 2025-05-21 10:00:00 +0800
 tags:
   - async
   - os
