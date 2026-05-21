@@ -4,7 +4,6 @@ title: Git 远程操作原理
 date: 2023-04-13 10:06:40 +0800
 tags:
   - git
-  - version-control
 ---
 
 

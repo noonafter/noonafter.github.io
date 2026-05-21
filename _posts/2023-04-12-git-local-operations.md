@@ -4,7 +4,6 @@ title: Git 本地操作原理
 date: 2023-04-12 10:00:00 +0800
 tags:
   - git
-  - version-control
 ---
 
 

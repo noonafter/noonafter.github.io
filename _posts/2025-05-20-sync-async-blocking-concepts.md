@@ -25,7 +25,7 @@ tags:
 
 > 任务A后续所有的工作与任务B都没有明确的时间顺序(次序)关系
 
-![sync_async](https://noonafter.cn/assets/images/posts/2026-05-20-sync-async-blocking-concepts/sync_async.png)
+![sync_async](https://noonafter.cn/assets/images/posts/2025-05-20-sync-async-blocking-concepts/sync_async.png)
 
 ### 2、阻塞与非阻塞
 
