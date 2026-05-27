@@ -219,4 +219,9 @@ Main program ends
 
 理解并正确应用这些概念，可以优化程序的响应性和资源利用率。
 
+## 参考文章
+[Understanding Synchronous vs Asynchronous Execution and Blocking vs Non-Blocking Operations](https://medium.com/@function12/understanding-synchronous-vs-asynchronous-execution-and-blocking-vs-non-blocking-operations-205a711d232c)
+
+[Understanding Synchronous/Asynchronous and Blocking/Non-blocking](https://dev-yyh.github.io/en/OS/9)
+
 
