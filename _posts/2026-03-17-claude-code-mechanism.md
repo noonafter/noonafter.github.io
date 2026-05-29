@@ -4,19 +4,24 @@ tags:
   - llm
   - agents
   - skills
+  - https
+  - web
+  - encryption
 ---
 
 本文通过对 Claude Code 进行 HTTP 抓包，分析并探讨其底层工作机制，包括 System Prompt 设计、Tools 架构、Skills 系统以及渐进式披露（Progressive Disclosure）策略。
 
 **抓包环境说明**
 
-由于Claude Code默认使用的是双向 HTTPS 协议，Charles无法进行抓包，所以只能使用支持 HTTP 的地址，具体配置如下:
+由于Claude Code默认使用的是双向 HTTPS 协议(mTLS)，Charles无法进行抓包，这里使用支持 HTTP 的 LLM 提供商，具体配置如下:
 
 - 工具：Charles
 - 代理：HTTP_PROXY="http://127.0.0.1:8888"
 - 协议：HTTP（原 HTTPS 双向通信）
 - API：火山引擎 API
 - 模型：doubao-seed-2-0-lite-260215
+
+其实也有其他方法来抓包，具体原理参考[Claude Code 的双向 TLS 认证机制与抓包调试](./2026-03-14-claude-code-mtls.md)
 
 ## 一、整体架构概览
 
