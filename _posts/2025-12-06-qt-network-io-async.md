@@ -272,6 +272,8 @@ void onReadyRead() {
 
 这种方案引入了额外的内存拷贝：`QRingBuffer` → `readAll()` 临时对象 → `incompleteBuffer`。高吞吐场景下性能不佳。
 
+[Note: TCP sockets cannot be opened in QIODeviceBase::Unbuffered mode.](https://doc.qt.io/qt-6/qtcpsocket.html)
+
 **优化方案1：小 header 拷贝 + 预解析**
 
 利用 `QIODevice::peek()` 读取协议头部（不消费数据），预解析帧长度，完整帧到达后一次性 `read()` 到目标缓冲区：
