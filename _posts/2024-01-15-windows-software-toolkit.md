@@ -39,7 +39,7 @@ tags:
 | Everything | 本地文件搜索 | [官网](https://www.voidtools.com/) | - |
 | WizTree | 磁盘空间扫描 | [官网](https://www.diskanalyzer.com/) | - |
 | 7zip | 压缩解压 | [开源](https://github.com/mcmilk/7-Zip) | - |
-| WinRar | 压缩解压 | [官网](https://www.winrar.com.cn/) | 需去广告 |
+| WinRar | 压缩解压 | [官网](https://www.winrar.com.cn/) | [去广告方法](https://blog.csdn.net/haiyunzhiqiu/article/details/119176038) |
 | Geek | 强力卸载工具 | [官网](https://geekuninstaller.com/download) | - |
 | PowerToys | 系统增强工具集 | [开源](https://github.com/microsoft/PowerToys) | 含屏幕测量尺等 |
 | Deskpin | 窗口置顶 | [开源](https://github.com/thewhitegrizzli/DeskPins) | - |
@@ -98,7 +98,7 @@ tags:
 |------|------|------|------|
 | Caj2pdf-qt | CAJ 转 PDF | [开源](https://github.com/sainnhe/caj2pdf-qt) | - |
 | 格式工厂 | 多媒体格式转换 | [官网](http://www.pcfreetime.com/formatfactory/CN/index.html) | - |
-| Beyond Compare 5 | 文件对比 | [官网](https://www.scootersoftware.com/) \| [激活方法](https://www.jianshu.com/p/b26a79102b07) | - |
+| Beyond Compare 5 | 文件对比 | [官网](https://www.scootersoftware.com/)  | [激活方法](https://www.jianshu.com/p/b26a79102b07) |
 | Audacity | 音频编辑 | [官网](https://www.audacityteam.org/) \| [开源](https://github.com/audacity/audacity) | 最高支持 384kHz |
 
 ## 六、文档办公
@@ -145,10 +145,6 @@ tags:
 
 ## 九、进阶激活与配置
 
-### Chrome 插件：CSDN 自动展开
-配合油猴脚本使用。
-*   教程：[leonx.cn CSDN插件教程](https://www.leonx.cn/archives/38/)
-*   脚本：[auto.user.js](https://www.leonx.cn/csdn_reader/auto.user.js)
 
 ### Office & Visio 激活
 **方法1（推荐）**：Office Tool Plus
