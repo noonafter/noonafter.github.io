@@ -1,5 +1,7 @@
 ---
-title: Windows 系统软件工具集
+layout: article
+title: Windows 系统软件工具集【2026年4月更新】
+date: 2024-01-15 10:00:00 +0800
 tags:
   - diy
 ---
@@ -12,8 +14,8 @@ tags:
 
 | 工具 | 功能 | 链接 | 备注 |
 |------|------|------|------|
-| Matlab 2022b | 科学计算与数据分析 | [官网](https://www.mathworks.com/products/matlab.html) | 推荐 2022b |
-| VSCode | 通用代码编辑器 | [开源](https://github.com/microsoft/vscode) | 支持各类插件 |
+| Matlab | 科学计算与数据分析 | [官网](https://www.mathworks.com/products/matlab.html) | 推荐 2022b |
+| VSCode | 通用代码编辑器 | [开源](https://github.com/microsoft/vscode) | 跨平台，支持各类插件 |
 | Clion | C++ IDE | [官网](https://www.jetbrains.com/clion/) \| [使用方法](https://noonafter.cn/archive.html?tag=clion) | 2025 后个人免费 |
 | PyCharm | Python IDE | [官网](https://www.jetbrains.com/pycharm/) | 专业版/社区版 |
 | Visual Studio 2022 Pro | 微软开发套件 | [官网](https://visualstudio.microsoft.com/) | 需激活 |
@@ -39,10 +41,10 @@ tags:
 | Everything | 本地文件搜索 | [官网](https://www.voidtools.com/) | - |
 | WizTree | 磁盘空间扫描 | [官网](https://www.diskanalyzer.com/) | - |
 | 7zip | 压缩解压 | [开源](https://github.com/mcmilk/7-Zip) | - |
-| WinRar | 压缩解压 | [官网](https://www.winrar.com.cn/) | [去广告方法](https://blog.csdn.net/haiyunzhiqiu/article/details/119176038) |
+| WinRar | 压缩解压 | [官网](https://www.winrar.com.cn/) \| [去广告方法](https://blog.csdn.net/haiyunzhiqiu/article/details/119176038)| - |
 | Geek | 强力卸载工具 | [官网](https://geekuninstaller.com/download) | - |
 | PowerToys | 系统增强工具集 | [开源](https://github.com/microsoft/PowerToys) | 含屏幕测量尺等 |
-| Deskpin | 窗口置顶 | [开源](https://github.com/thewhitegrizzli/DeskPins) | - |
+| DeskPins | 窗口置顶 | [开源](https://github.com/thewhitegrizzli/DeskPins) | - |
 | Snipaste | 截图+贴图+取色 | [官网](https://zh.snipaste.com/download.html) | - |
 | 火绒 | 杀毒软件 | [官网](https://www.huorong.cn/) | - |
 | Ventoy | U盘启动盘制作 | [开源](https://github.com/ventoy/Ventoy) | - |
@@ -57,6 +59,8 @@ tags:
 | WinSCP | SFTP/FTP 客户端 | [官网](https://winscp.net/) \| [开源](https://github.com/winscp/winscp) | - |
 | SocketTool | 网络调试 | [下载](https://pan.baidu.com/s/1YB4pbMgnH4Y8wjk2cPr6jQ?pwd=6w6z) | TCP/UDP 测试 |
 | Advanced IP Scanner | 局域网 IP 扫描 | [官网](https://www.advanced-ip-scanner.com/cn/) | - |
+| Wireshark | 网络抓包分析 | [官网](https://www.wireshark.org/) \| [开源](https://github.com/wireshark/wireshark) | - |
+| Charles | HTTP 代理抓包 | [官网](https://www.charlesproxy.com/) | 需激活 |
 
 ## 四、网络应用
 
@@ -98,7 +102,7 @@ tags:
 |------|------|------|------|
 | Caj2pdf-qt | CAJ 转 PDF | [开源](https://github.com/sainnhe/caj2pdf-qt) | - |
 | 格式工厂 | 多媒体格式转换 | [官网](http://www.pcfreetime.com/formatfactory/CN/index.html) | - |
-| Beyond Compare 5 | 文件对比 | [官网](https://www.scootersoftware.com/)  | [激活方法](https://www.jianshu.com/p/b26a79102b07) |
+| Beyond Compare 5 | 文件对比 | [官网](https://www.scootersoftware.com/) \|[激活方法](https://www.jianshu.com/p/b26a79102b07) | - |
 | Audacity | 音频编辑 | [官网](https://www.audacityteam.org/) \| [开源](https://github.com/audacity/audacity) | 最高支持 384kHz |
 
 ## 六、文档办公
@@ -111,6 +115,13 @@ tags:
 | CAJViewer | CAJ 格式阅读器 | [官网](https://cajviewer.cnki.net/) | - |
 | Adobe Acrobat DC | PDF 编辑器 | [官网](https://www.adobe.com/cn/acrobat.html) | 需激活 |
 | SmallPDF | 在线 PDF 转换/解密 | [官网](https://smallpdf.com/) | - |
+
+### 笔记工具
+
+| 工具 | 功能 | 链接 | 备注 |
+|------|------|------|------|
+| Obsidian | Markdown 笔记工具 | [官网](https://obsidian.md/) | 支持本地存储与插件 |
+| 有道云笔记 | 云笔记 | [官网](https://note.youdao.com/) | - |
 
 ### 办公套件
 
@@ -128,7 +139,7 @@ tags:
 |------|------|------|------|
 | Cherry Studio | 多模型 AI 对话 | [官网](https://cherryai.com.cn/) \| [开源](https://github.com/CherryHQ/cherry-studio) | - |
 | Claude Code CLI | AI 编程助手 | [官网](https://www.anthropic.com/claude/code) | - |
-| Codex CLI | AI 编程助手 | - | - |
+| Codex CLI | AI 编程助手 | [官网](https://developers.openai.ac.cn/codex/cli) | - |
 | Next Ai Draw.io | AI 辅助绘图 | [开源](https://github.com/DayuanJiang/next-ai-draw-io) | 支持 MCP 集成 |
 | MinerU | AI 文档解析 | [官网](https://mineru.net/) \| [开源](https://github.com/opendatalab/MinerU) | - |
 |CC Switch|AI工具统一管理器|[官网](https://www.ccswitch.io/zh/) \| [开源](https://github.com/farion1231/cc-switch)|------|
