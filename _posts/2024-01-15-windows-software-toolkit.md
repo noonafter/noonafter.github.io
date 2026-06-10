@@ -86,7 +86,7 @@ tags:
 | 工具 | 功能 | 链接 | 备注 |
 |------|------|------|------|
 | 迅雷 | 下载器 | [官网](https://www.xunlei.com/) | - |
-| IDM | 下载器 | [官网](https://www.internetdownloadmanager.com/) | 需激活 |
+| IDM | 下载器 | [官网](https://www.internetdownloadmanager.com/) | [激活脚本](https://pan.baidu.com/s/18zM01HJ0WV19ZuLmKMxpag?pwd=u7mm) |
 | 百度网盘 | 云存储 | [官网](https://pan.baidu.com/) | - |
 | 阿里网盘 | 云存储 | [官网](https://www.alipan.com/) | - |
 
@@ -169,12 +169,12 @@ tags:
 *   教程：[CSDN WinRAR去广告](https://blog.csdn.net/haiyunzhiqiu/article/details/119176038)
 
 ### IDM 激活
-使用 PowerShell 脚本重置激活。
-*   Github：[IDM-Activation-Script](https://github.com/lstprjct/IDM-Activation-Script)
+使用脚本激活。
+*   Github：[IDM-Activation-Script](https://github.com/cjhdevact/IDM-Activation-Script-Chinese)
 *   操作步骤：
-    1.  打开 **PowerShell(管理员)**。
-    2.  运行：`iex(irm is.gd/idm_reset)`
-    3.  按屏幕提示操作。
+    1.  解压
+    2.  运行：`IAS.cmd`
+    3.  按屏幕提示操作
 
 ### 局域网/公网串流：Sunshine + Moonlight
 将电脑画面投射到平板或电视。
