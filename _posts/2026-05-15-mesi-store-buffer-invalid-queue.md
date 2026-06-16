@@ -3,17 +3,15 @@ layout: article
 title: MESI 的性能演进：Store Buffer、Invalidate Queue 与内存屏障
 date: 2026-05-15 10:00:00 +0800
 tags:
-  - mesi
-  - cache-coherence
-  - memory-barrier
-  - cpu-architecture
+  - cache
   - concurrency
+  - memory
 ---
 
 
 ## 一、缓存结构
 
-现代 CPU 的速度远超内存系统。2006 年的 CPU 每纳秒可执行十条指令，但从主存读取一个数据项需要数十纳秒。这一速度差距超过两个数量级，促使现代 CPU 配备了数兆字节的缓存，访问延迟仅需几个时钟周期。
+现代 CPU 的速度远超内存系统。2006 年的 CPU 每纳秒可执行十条指令，主存访问延迟约数十纳秒，两者相差两个数量级；到了 2026 年，CPU 吞吐提升至每纳秒十至二十条指令，而 DDR5 在多核总线下的访问延迟因排队与校验开销退步至近百纳秒，差距扩大至三个数量级。这一持续扩大的速度差距，是现代 CPU 配备数十乃至上百兆字节缓存的根本原因。
 
 ![](https://noonafter.cn/assets/images/posts/2026-05-15-mesi-store-buffer-invalid-queue/cache-structure.jpg)
 
@@ -113,11 +111,11 @@ Read Response 可能由内存或其他缓存提供——若某缓存持有 M 状
 
 ![](https://noonafter.cn/assets/images/posts/2026-05-15-mesi-store-buffer-invalid-queue/write-stall.jpg)
 
-纯 MESI 协议下，CPU 0 向 CPU 1 缓存中持有的缓存行写入时，必须等待缓存行到达才能写入。CPU 0 在此期间长时间停顿。然而，CPU 0 最终会无条件覆盖该缓存行的数据，等待无必要。
+纯 MESI 协议下，CPU 0 向其他核心持有的 Shared 状态缓存行写入时，必须等待失效ACK到底才能写入。CPU 向本地内部结构写入仅需一个时钟周期（约 0.1 纳秒），但跨核写入必须将消息送上片上网络、在互连总线上发送 Invalidate 报文，并等待目标核心完成失效后返回 ACK。这一跨核交互的往返延迟在多核系统中通常需要数纳秒至数十纳秒，与核心内部的指令处理速度相差达两个甚至三个数量级（数百个时钟周期）。在没有异步缓冲的理想 MESI 状态下，CPU 0 只能在此期间让流水线彻底冻结停顿。然而，从结果来看，CPU 0 最终会无条件覆盖该缓存行的数据，这种为了多核强一致性而让高速执行引擎干等异步通信回执的代价，在物理尺度上是极其低效且毫无必要的。
 
 ### 2、Store Buffer
 
-解决方案是在 CPU 与缓存之间添加 **Store Buffer**（写缓冲区）。CPU 只需将写入记录存入 Store Buffer 即可继续执行后续指令。当缓存行最终到达时，数据从 Store Buffer 移入缓存行。
+解决方案是在 CPU 与缓存之间添加 **Store Buffer**（存储缓冲区）。CPU 只需将写入记录存入 Store Buffer 即可继续执行后续指令（只需一个时钟周期，约 0.1 纳秒）。当缓存行最终到达时，数据从 Store Buffer 移入缓存行。
 
 ![](https://noonafter.cn/assets/images/posts/2026-05-15-mesi-store-buffer-invalid-queue/store-buffer.jpg)
 
@@ -284,3 +282,11 @@ CPU 0 执行 foo():            CPU 1 执行 bar():
 3. **引入内存屏障指令** → 软件在关键节点显式清空 Store Buffer 和 Invalidate Queue，强制恢复 MESI 的一致性语义
 
 Store Buffer 和 Invalidate Queue 以"对内自洽、对外异步"的策略提升单核性能。内存屏障是硬件暴露给软件的一致性开关——它不改变底层机制，而是在关键节点关闭异步优化，换取多核间的数据安全。
+
+回顾全文，两个层面的保证需要区分：
+
+**缓存一致性**由 MESI 协议保证——同一地址不会被多个缓存持有矛盾值。Store Buffer 与 Invalidate Queue 提升了性能，代价是 MESI 的保证退化为异步弱一致性：每个地址最终一致，但跨地址的操作顺序无法保证。
+
+**内存一致性**（内存模型）约束多地址间的操作可见顺序，是程序员在多核编程中真正需要的保证。MESI 协议不提供此保证，须由软件通过内存屏障显式恢复。
+
+内存屏障确保的是内存一致性，但其实现机制落在缓存一致性的层面——写屏障操作 Store Buffer，读屏障操作 Invalidate Queue。本质上，内存屏障是软件通过 MESI 级别的结构手动强制同步，换取多核间的内存顺序保证。由此可得一个推论：内存屏障的性能开销是 cache 级别的——它将 Store Buffer 与 Invalidate Queue 费心隐藏的跨核通信延迟重新暴露出来，代价等于屏障所针对的异步优化原本要隐藏的开销。
