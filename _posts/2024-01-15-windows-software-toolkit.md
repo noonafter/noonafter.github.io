@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Windows 系统软件工具集【2026年4月更新】
+title: 【2026年6月更新】Windows 系统软件工具集
 date: 2024-01-15 10:00:00 +0800
 tags:
   - diy
@@ -38,16 +38,19 @@ tags:
 
 | 工具 | 功能 | 链接 | 备注 |
 |------|------|------|------|
-| Everything | 本地文件搜索 | [官网](https://www.voidtools.com/) | - |
+| Everything | 本地文件搜索 | [官网](https://www.voidtools.com/) | 仅支持Windows |
+| ripgrep | 行文本搜索 | [开源](https://github.com/BurntSushi/ripgrep) | 跨平台、高速搜索 |
 | WizTree | 磁盘空间扫描 | [官网](https://www.diskanalyzer.com/) | - |
 | 7zip | 压缩解压 | [开源](https://github.com/mcmilk/7-Zip) | - |
 | WinRar | 压缩解压 | [官网](https://www.winrar.com.cn/) \| [去广告方法](https://blog.csdn.net/haiyunzhiqiu/article/details/119176038)| - |
 | Geek | 强力卸载工具 | [官网](https://geekuninstaller.com/download) | - |
 | PowerToys | 系统增强工具集 | [开源](https://github.com/microsoft/PowerToys) | 含屏幕测量尺等 |
 | DeskPins | 窗口置顶 | [开源](https://github.com/thewhitegrizzli/DeskPins) | - |
+| PixPin | 截图+贴图+录屏+OCR | [官网](https://pixpin.cn/) | 解决所有图像捕捉需求 |
 | Snipaste | 截图+贴图+取色 | [官网](https://zh.snipaste.com/download.html) | - |
-| 火绒 | 杀毒软件 | [官网](https://www.huorong.cn/) | - |
+| 火绒 | 杀毒软件 | [官网](https://www.huorong.cn/) | 无广告、绿色干净 |
 | Ventoy | U盘启动盘制作 | [开源](https://github.com/ventoy/Ventoy) | - |
+| HWMonitor | 硬件监控工具 | [官网](https://www.cpuid.com/softwares/hwmonitor.html) | 仅支持Windows |
 
 ## 三、网络工具
 
@@ -56,6 +59,7 @@ tags:
 | Clash Verge Rev | 网络代理 | [开源](https://github.com/Clash-Verge-rev/clash-verge-rev) \| [教程](./2025-05-31-clash-verge-guide.md) | - |
 | V2rayN | 网络代理备选 | [开源](https://github.com/2dust/v2rayN) | - |
 | Todesk | 远程桌面 | [官网](https://www.todesk.com/) | - |
+| RustDesk | 远程桌面 | [官网](https://rustdesk.com/zh-cn/) \| [开源](https://github.com/rustdesk/rustdesk) | 跨平台、支持自建中继服务器、Todesk/TeamViewer 替代品 |
 | WinSCP | SFTP/FTP 客户端 | [官网](https://winscp.net/) \| [开源](https://github.com/winscp/winscp) | - |
 | SocketTool | 网络调试 | [下载](https://pan.baidu.com/s/1YB4pbMgnH4Y8wjk2cPr6jQ?pwd=6w6z) | TCP/UDP 测试 |
 | Advanced IP Scanner | 局域网 IP 扫描 | [官网](https://www.advanced-ip-scanner.com/cn/) | - |
@@ -102,7 +106,7 @@ tags:
 |------|------|------|------|
 | Caj2pdf-qt | CAJ 转 PDF | [开源](https://github.com/sainnhe/caj2pdf-qt) | - |
 | 格式工厂 | 多媒体格式转换 | [官网](http://www.pcfreetime.com/formatfactory/CN/index.html) | - |
-| Beyond Compare 5 | 文件对比 | [官网](https://www.scootersoftware.com/) \|[激活方法](https://www.jianshu.com/p/b26a79102b07) | - |
+| Beyond Compare 5 | 文件对比 | [官网](https://www.scootersoftware.com/) \| [激活方法](https://www.jianshu.com/p/b26a79102b07) | - |
 | Audacity | 音频编辑 | [官网](https://www.audacityteam.org/) \| [开源](https://github.com/audacity/audacity) | 最高支持 384kHz |
 
 ## 六、文档办公
@@ -142,7 +146,7 @@ tags:
 | Codex CLI | AI 编程助手 | [官网](https://developers.openai.ac.cn/codex/cli) | - |
 | Next Ai Draw.io | AI 辅助绘图 | [开源](https://github.com/DayuanJiang/next-ai-draw-io) | 支持 MCP 集成 |
 | MinerU | AI 文档解析 | [官网](https://mineru.net/) \| [开源](https://github.com/opendatalab/MinerU) | - |
-|CC Switch|AI工具统一管理器|[官网](https://www.ccswitch.io/zh/) \| [开源](https://github.com/farion1231/cc-switch)|------|
+|CC Switch|AI工具统一管理器|[官网](https://www.ccswitch.io/zh/) \| [开源](https://github.com/farion1231/cc-switch)|-|
 
 ## 八、娱乐
 
