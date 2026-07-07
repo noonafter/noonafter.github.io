@@ -18,9 +18,9 @@ tags:
 | WizTree | 磁盘空间扫描 | [官网](https://www.diskanalyzer.com/) | 磁盘文件分析 |
 | 7zip | 压缩解压 | [开源](https://github.com/mcmilk/7-Zip) | - |
 | WinRar | 压缩解压 | [官网](https://www.winrar.com.cn/) | [去广告方法](https://blog.csdn.net/haiyunzhiqiu/article/details/119176038) |
-| Geek | 强力卸载工具 | [官网](https://geekuninstaller.com/download) | - |
+| Geek | 强力卸载工具 | [官网](https://geekuninstaller.com/download) | 轻量、免安装 |
 | PowerToys | 系统增强工具集 | [开源](https://github.com/microsoft/PowerToys) | 微软官方提供的系统工具箱，含屏幕测量尺等 |
-| DeskPins | 窗口置顶 | [开源](https://github.com/thewhitegrizzli/DeskPins) | - |
+| DeskPins | 窗口置顶 | [开源](https://github.com/thewhitegrizzli/DeskPins) | 极致轻量、免安装 |
 | PixPin | 截图+贴图+录屏+OCR | [官网](https://pixpin.cn/) | 解决所有图像捕捉需求 |
 | Snipaste | 截图+贴图+取色 | [官网](https://zh.snipaste.com/download.html) | - |
 | 火绒 | 杀毒软件 | [官网](https://www.huorong.cn/) | 无广告、绿色干净 |
