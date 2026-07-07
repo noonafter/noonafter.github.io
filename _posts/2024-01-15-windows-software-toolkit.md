@@ -36,6 +36,7 @@ tags:
 |------|------|------|------|
 | Clash Verge Rev | 网络代理 | [开源](https://github.com/Clash-Verge-rev/clash-verge-rev)  | 自定义Merge和Script效果更好，参考[教程](./2025-05-31-clash-verge-guide.md) |
 | V2rayN | 网络代理备选 | [开源](https://github.com/2dust/v2rayN) | - |
+| UU远程 | 远程桌面 | [官网](https://uuyc.163.com/download/) | L站佬友强烈推荐 |
 | Todesk | 远程桌面 | [官网](https://www.todesk.com/) | - |
 | RustDesk | 远程桌面 | [官网](https://rustdesk.com/zh-cn/) \| [开源](https://github.com/rustdesk/rustdesk) | 跨平台、支持自建中继服务器、Todesk/TeamViewer 替代品 |
 | WinSCP | SFTP/FTP 客户端 | [官网](https://winscp.net/) \| [开源](https://github.com/winscp/winscp) | - |
