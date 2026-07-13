@@ -11,7 +11,7 @@ tags:
 
 [前文](./2026-05-15-mesi-store-buffer-invalid-queue.md)推演了 MESI 协议引入 Store Buffer 和 Invalidate Queue 后如何导致内存重排，以及写屏障和读屏障如何恢复顺序。本文从程序员的视角出发，回答一个实践问题：并发代码为什么会出错，以及 C++ 提供了什么工具来防止这些错误。
 
-## 一、单核的承诺与多核的现实
+## 一、单核场景与多核场景
 
 ### 1、as-if-serial：编译器和 CPU 的优化红线
 
