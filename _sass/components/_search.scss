@@ -145,6 +145,7 @@
 .search-result__item {
   list-style-type: none;
   a {
+    display: block;
     padding: map-get($spacers, 1) map-get($spacers, 3);
     @include transition(none);
     @include clickable($text-color, transparent, $text-color-3, $main-color-3);
@@ -174,6 +175,35 @@
       }
     }
   }
+}
+
+.search-result__title,
+.search-result__line {
+  display: block;
+}
+
+.search-result__title {
+  font-weight: map-get($base, font-weight-bold);
+}
+
+.search-result__line {
+  margin-top: map-get($spacers, 1);
+  color: $text-color-theme-dark-l;
+  overflow-wrap: anywhere;
+}
+
+.search-result__line-number {
+  display: inline-block;
+  min-width: 3.5em;
+  margin-right: map-get($spacers, 1);
+  color: $text-color-theme-dark-d;
+  font-family: map-get($base, font-family-code);
+}
+
+.search-result__mark {
+  padding: 0;
+  color: inherit;
+  background-color: rgba($main-color-1, .35);
 }
 
 // google search

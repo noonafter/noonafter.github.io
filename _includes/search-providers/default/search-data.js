@@ -7,7 +7,8 @@ window.TEXT_SEARCH_DATA={
       {'title':{{ _article.title | jsonify }},
       {%- include snippets/prepend-baseurl.html path=_article.url -%}
       {%- assign _url = __return -%}
-      'url':{{ _url | jsonify }}}
+      'url':{{ _url | jsonify }},
+      'content':{{ _article.content | default: '' | jsonify }}}
       {%- endfor -%}
     ]
   {%- endfor -%}
