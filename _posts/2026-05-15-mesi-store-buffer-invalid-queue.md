@@ -115,7 +115,7 @@ Read Response 可能由内存或其他缓存提供——若某缓存持有 M 状
 
 ### 2、Store Buffer
 
-解决方案是在 CPU 与缓存之间添加 **Store Buffer**（存储缓冲区）。CPU 只需将写入记录存入 Store Buffer 即可继续执行后续指令（只需一个时钟周期，约 0.1 纳秒）。当缓存行最终到达时，数据从 Store Buffer 移入缓存行。
+解决方案是在 CPU 与缓存之间添加 **Store Buffer**（存储缓冲区）。CPU 只需将写入记录存入 Store Buffer 即可继续执行后续指令（只需一个时钟周期，约 0.1 纳秒）。当 CPU 收到所有目标核心的回执（ACK）并获得该缓存行的独占权后（若缓存未命中则还需等待缓存行载入本地 L1），数据从 Store Buffer 移入缓存行。
 
 ![](https://noonafter.cn/assets/images/posts/2026-05-15-mesi-store-buffer-invalid-queue/store-buffer.jpg)
 
