@@ -4,8 +4,6 @@ title: pyproject.toml：现代 Python 项目的声明式配置标准
 date: 2026-02-01 09:00:00 +0800
 tags:
   - python
-  - pyproject
-  - packaging
 excerpt: pyproject.toml 作为 PEP 518 与 PEP 621 引入的现代 Python 项目配置标准，解析其核心配置段、与旧配置方式的对比及实用扩展。
 ---
 

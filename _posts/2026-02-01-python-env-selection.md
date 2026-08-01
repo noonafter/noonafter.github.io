@@ -4,8 +4,6 @@ title: Python 环境选型与工程实践
 date: 2026-02-01 11:00:00 +0800
 tags:
   - python
-  - uv
-  - conda
 excerpt: Python 环境选型与工程实践：二进制依赖与 Conda 的边界、uv 主环境方案、依赖分组与交易环境隔离。
 ---
 
