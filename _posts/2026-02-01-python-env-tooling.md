@@ -1,10 +1,10 @@
 ---
 layout: article
-title: Python 环境与依赖管理的工具谱系
+title: Python 环境与包管理的工具
 date: 2026-02-01 10:00:00 +0800
 tags:
   - python
-excerpt: Python 环境与依赖管理的工具谱系：从 venv/pip 到 uv、Poetry、Conda 与 Pixi 的定位对比，以及 uv 作为新一代默认工具的详解。
+excerpt: Python 环境与包管理的工具谱系：从 venv/pip 到 uv、Poetry、Conda 与 Pixi 的定位对比，以及 uv 作为新一代默认工具的详解。
 ---
 
 ## 一、环境、包与项目：三个层次的概念模型
