@@ -4,7 +4,7 @@ title: C++ 初始化与赋值的底层机制
 date: 2024-04-10 10:00:00 +0800
 tags:
   - cpp/basic
-  - cpp/oop
+  - init
 ---
 
 本文与[C++ 类型分类与初始化](./2024-04-10-cpp-initialization-types.md)和[C++ 初始化详解](./2024-04-16-cpp-initialization-semantics.md)互为补充：前者说明类型如何影响初始化，后者说明初始化语法和语义路径，本文聚焦对象生命周期、复制/移动、赋值和异常安全。

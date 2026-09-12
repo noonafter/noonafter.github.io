@@ -4,7 +4,7 @@ title: C++ 类型分类与初始化
 date: 2024-04-10 10:00:00 +0800
 tags:
   - cpp/basic
-  - cpp/oop
+  - init
 ---
 
 ## 一、类型决定初始化什么
