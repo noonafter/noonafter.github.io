@@ -4,9 +4,7 @@ title: 使用 Git Daemon 在局域网中进行代码同步
 date: 2024-08-18 14:30:00 +0800
 tags:
   - git
-  - git-daemon
-  - lan-sync
-  - git-protocol
+  - net
 ---
 
 
